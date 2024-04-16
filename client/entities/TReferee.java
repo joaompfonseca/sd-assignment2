@@ -1,4 +1,4 @@
-package threads;
+package client.entities;
 
 import playground.IPlayground_Referee;
 import refereesite.IRefereeSite_Referee;

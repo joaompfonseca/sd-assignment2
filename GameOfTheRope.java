@@ -5,9 +5,9 @@ import playground.IPlayground;
 import playground.MPlayground;
 import refereesite.IRefereeSite;
 import refereesite.MRefereeSite;
-import threads.TCoach;
-import threads.TContestant;
-import threads.TReferee;
+import client.entities.TCoach;
+import client.entities.TContestant;
+import client.entities.TReferee;
 import contestantsbench.MContestantsBench;
 
 /**

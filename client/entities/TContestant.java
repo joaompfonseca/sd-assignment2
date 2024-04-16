@@ -1,4 +1,4 @@
-package threads;
+package client.entities;
 
 import contestantsbench.IContestantsBench_Contestant;
 import playground.IPlayground_Contestant;
