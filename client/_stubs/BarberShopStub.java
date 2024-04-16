@@ -1,7 +1,7 @@
-package client.stubs;
+package client._stubs;
 
 import server.main.*;
-import client.entities.*;
+import client._entities.*;
 import commInfra.*;
 import genclass.GenericIO;
 

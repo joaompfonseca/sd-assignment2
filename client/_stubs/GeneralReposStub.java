@@ -1,4 +1,4 @@
-package client.stubs;
+package client._stubs;
 
 import commInfra.*;
 import genclass.GenericIO;

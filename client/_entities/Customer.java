@@ -1,6 +1,6 @@
-package client.entities;
+package client._entities;
 
-import client.stubs.*;
+import client._stubs.*;
 
 /**
  *    Customer thread.

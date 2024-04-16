@@ -1,4 +1,4 @@
-package client.entities;
+package client._entities;
 
 /**
  *    Definition of the internal states of the barber during his life cycle.

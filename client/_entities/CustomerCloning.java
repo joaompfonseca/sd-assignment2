@@ -1,4 +1,4 @@
-package client.entities;
+package client._entities;
 
 /**
  *    Customer cloning.
