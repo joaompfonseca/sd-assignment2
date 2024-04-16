@@ -1,125 +1,104 @@
 package communication;
 
 /**
- *   Type of the exchanged messages.
- *the
- *   Implementation of a client-server model of type 2 (server replication).
- *   Communication is based on a communication channel under the TCP protocol.
+ * Type of the exchanged messages.
+ * the
+ * Implementation of a client-server model of type 2 (server replication).
+ * Communication is based on a communication channel under the TCP protocol.
  */
+public class MessageType {
+    /**
+     * Initialization of the logging file name and the number of iterations (service request).
+     */
+    public static final int SETNFIC = 1;
 
-public class MessageType
-{
-  /**
-   *  Initialization of the logging file name and the number of iterations (service request).
-   */
+    /**
+     * Logging file was initialized (reply).
+     */
+    public static final int NFICDONE = 2;
 
-   public static final int SETNFIC = 1;
+    /**
+     * Request hair cut (service request).
+     */
+    public static final int REQCUTH = 3;
 
-  /**
-   *  Logging file was initialized (reply).
-   */
+    /**
+     * Hair was cut (reply).
+     */
+    public static final int CUTHDONE = 4;
 
-   public static final int NFICDONE = 2;
+    /**
+     * Barber shop is full (reply).
+     */
+    public static final int BSHOPF = 5;
 
-  /**
-   *  Request hair cut (service request).
-   */
+    /**
+     * Barber goes to sleep (service request).
+     */
+    public static final int SLEEP = 6;
 
-   public static final int REQCUTH = 3;
+    /**
+     * Barber is asleep (reply).
+     */
+    public static final int SLEEPDONE = 7;
 
-  /**
-   *  Hair was cut (reply).
-   */
+    /**
+     * Call a customer (service request).
+     */
+    public static final int CALLCUST = 8;
 
-   public static final int CUTHDONE = 4;
+    /**
+     * Customer was called (reply).
+     */
+    public static final int CCUSTDONE = 9;
 
-  /**
-   *  Barber shop is full (reply).
-   */
+    /**
+     * Barber receives payment (service request).
+     */
+    public static final int RECPAY = 10;
 
-   public static final int BSHOPF = 5;
+    /**
+     * Payment was received (reply).
+     */
+    public static final int RPAYDONE = 11;
 
-  /**
-   *  Barber goes to sleep (service request).
-   */
+    /**
+     * End of work - barber (service request).
+     */
+    public static final int ENDOP = 12;
 
-   public static final int SLEEP = 6;
+    /**
+     * Barber goes home (reply).
+     */
+    public static final int EOPDONE = 13;
 
-  /**
-   *  Barber is asleep (reply).
-   */
+    /**
+     * Server shutdown (service request).
+     */
+    public static final int SHUT = 14;
 
-   public static final int SLEEPDONE = 7;
+    /**
+     * Server was shutdown (reply).
+     */
+    public static final int SHUTDONE = 15;
 
-  /**
-   *  Call a customer (service request).
-   */
+    /**
+     * Set barber state (service request).
+     */
+    public static final int STBST = 16;
 
-   public static final int CALLCUST = 8;
+    /**
+     * Set customer state (service request).
+     */
+    public static final int STCST = 17;
 
-  /**
-   *  Customer was called (reply).
-   */
+    /**
+     * Set barber and customer states (service request).
+     */
+    public static final int STBCST = 18;
 
-   public static final int CCUSTDONE = 9;
-
-  /**
-   *  Barber receives payment (service request).
-   */
-
-   public static final int RECPAY = 10;
-
-  /**
-   *  Payment was received (reply).
-   */
-
-   public static final int RPAYDONE = 11;
-
-  /**
-   *  End of work - barber (service request).
-   */
-
-   public static final int ENDOP = 12;
-
-  /**
-   *  Barber goes home (reply).
-   */
-
-   public static final int EOPDONE = 13;
-
-  /**
-   *  Server shutdown (service request).
-   */
-
-   public static final int SHUT = 14;
-
-  /**
-   *  Server was shutdown (reply).
-   */
-
-   public static final int SHUTDONE = 15;
-
-  /**
-   *  Set barber state (service request).
-   */
-
-   public static final int STBST = 16;
-
-  /**
-   *  Set customer state (service request).
-   */
-
-   public static final int STCST = 17;
-
-  /**
-   *  Set barber and customer states (service request).
-   */
-
-   public static final int STBCST = 18;
-
-  /**
-   *  Setting acknowledged (reply).
-   */
-
-   public static final int SACK = 19;
+    /**
+     * Setting acknowledged (reply).
+     */
+    public static final int SACK = 19;
 }
