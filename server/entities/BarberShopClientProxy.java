@@ -1,7 +1,7 @@
 package server.entities;
 
 import server.sharedRegions.*;
-import client.entities.*;
+import client._entities.*;
 import commInfra.*;
 import genclass.GenericIO;
 

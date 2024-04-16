@@ -2,7 +2,7 @@ package server.main;
 
 import server.entities.*;
 import server.sharedRegions.*;
-import client.stubs.*;
+import client._stubs.*;
 import commInfra.*;
 import genclass.GenericIO;
 import java.net.*;

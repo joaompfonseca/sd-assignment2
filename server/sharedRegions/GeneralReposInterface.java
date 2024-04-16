@@ -1,7 +1,7 @@
 package server.sharedRegions;
 
 import server.main.*;
-import client.entities.*;
+import client._entities.*;
 import commInfra.*;
 
 /**

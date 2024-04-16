@@ -2,8 +2,8 @@ package server.sharedRegions;
 
 import server.main.*;
 import server.entities.*;
-import client.entities.*;
-import client.stubs.*;
+import client._entities.*;
+import client._stubs.*;
 import commInfra.*;
 import genclass.GenericIO;
 
