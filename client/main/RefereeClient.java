@@ -1,9 +1,6 @@
 package client.main;
 
-import client.entities.TContestant;
 import client.entities.TReferee;
-import client.stubs.contestantsbench.ContestantsBenchStub;
-import client.stubs.contestantsbench.IContestantsBenchStub;
 import configuration.Config;
 
 /**
