@@ -1,23 +1,23 @@
 package client.main;
 
-import client.entities.TCoach;
+import client.entities.TContestant;
 import client.stubs.contestantsbench.ContestantsBenchStub;
 import client.stubs.contestantsbench.IContestantsBenchStub;
 import configuration.Config;
 
 /**
- * Client that encapsulates the coach threads.
+ * Client that encapsulates the contestant threads.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public class CoachClient {
+public class ContestantClient {
     /**
      * Main method.
      * <p>
      * Configures stubs based on runtime arguments.
-     * Initiates coach threads and awaits their completion.
+     * Initiates contestant threads and awaits their completion.
      *
      * @param args runtime arguments
      *             <ul>
@@ -25,25 +25,22 @@ public class CoachClient {
      *                 <li>args[1]: ContestantsBench server port number</li>
      *                 <li>args[2]: Playground server hostname</li>
      *                 <li>args[3]: Playground server port number</li>
-     *                 <li>args[4]: RefereeSite server hostname</li>
-     *                 <li>args[5]: RefereeSite server port number</li>
      *             </ul>
      */
     public static void main(String[] args) {
         // Runtime arguments
-        String cbHost, pgHost, rsHost;
-        int cbPort = -1, pgPort = -1, rsPort = -1;
+        String cbHost, pgHost;
+        int cbPort = -1, pgPort = -1;
 
         // Stubs
         IContestantsBenchStub cbStub;
         IPlaygroundStub pgStub;
-        IRefereeSiteStub rsStub;
 
         // Threads
-        Thread[] tCoaches = new Thread[2];
+        Thread[] tContestants = new Thread[2 * Config.N_CONTESTANTS_PER_TEAM];
 
         // Validate and parse runtime arguments
-        if (args.length != 6) {
+        if (args.length != 4) {
             System.err.println("Wrong number of parameters!");
             System.exit(1);
         }
@@ -69,37 +66,27 @@ public class CoachClient {
             System.err.println("args[3] is not a valid port number!");
             System.exit(1);
         }
-        rsHost = args[4];
-        try {
-            rsPort = Integer.parseInt(args[5]);
-        } catch (NumberFormatException e) {
-            System.err.println("args[5] is not a number!");
-            System.exit(1);
-        }
-        if ((rsPort < 4000) || (rsPort >= 65536)) {
-            System.err.println("args[5] is not a valid port number!");
-            System.exit(1);
-        }
 
         // Instantiate stubs
         cbStub = new ContestantsBenchStub(cbHost, cbPort);
         pgStub = new PlaygroundStub(pgHost, pgPort);
-        rsStub = new RefereeSiteStub(rsHost, rsPort);
 
         // Instantiate threads
         for (int team = 0; team < 2; team++) {
-            tCoaches[team] = new TCoach(cbStub, pgStub, rsStub, team, Config.N_CONTESTANTS_PER_TEAM, Config.N_CONTESTANTS_PER_TRIAL, Math.random());
+            for (int number = 0; number < Config.N_CONTESTANTS_PER_TEAM; number++) {
+                tContestants[team * Config.N_CONTESTANTS_PER_TEAM + number] = new TContestant(cbStub, pgStub, team, number, Config.MAX_STRENGTH, Config.MAX_STRENGTH);
+            }
         }
 
         // Start threads
-        for (Thread tCoach : tCoaches) {
-            tCoach.start();
+        for (Thread tContestant : tContestants) {
+            tContestant.start();
         }
 
         // Wait for threads to finish
         try {
-            for (Thread tCoach : tCoaches) {
-                tCoach.join();
+            for (Thread tContestant : tContestants) {
+                tContestant.join();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -108,6 +95,5 @@ public class CoachClient {
         // Shutdown stubs
         cbStub.shutdown();
         pgStub.shutdown();
-        rsStub.shutdown();
     }
 }

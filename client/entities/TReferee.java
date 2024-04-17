@@ -1,8 +1,5 @@
 package client.entities;
 
-import playground.IPlayground_Referee;
-import refereesite.IRefereeSite_Referee;
-
 /**
  * Referee thread.
  * <p>
@@ -17,11 +14,11 @@ public class TReferee extends Thread {
     /**
      * Reference the playground.
      */
-    private final IPlayground_Referee playground;
+    private final IPlaygroundStub_Referee playground;
     /**
      * Reference the referee site.
      */
-    private final IRefereeSite_Referee refereeSite;
+    private final IRefereeSiteStub_Referee refereeSite;
     /**
      * The number of games per match.
      */
@@ -39,7 +36,7 @@ public class TReferee extends Thread {
      * @param gamesPerMatch the number of games per match
      * @param trialsPerGame the number of trials per game
      */
-    public TReferee(IPlayground_Referee playground, IRefereeSite_Referee refereeSite, int gamesPerMatch, int trialsPerGame) {
+    public TReferee(IPlaygroundStub_Referee playground, IRefereeSiteStub_Referee refereeSite, int gamesPerMatch, int trialsPerGame) {
         this.playground = playground;
         this.refereeSite = refereeSite;
         this.gamesPerMatch = gamesPerMatch;

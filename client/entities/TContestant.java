@@ -1,7 +1,6 @@
 package client.entities;
 
-import contestantsbench.IContestantsBench_Contestant;
-import playground.IPlayground_Contestant;
+import client.stubs.contestantsbench.IContestantsBenchStub_Contestant;
 
 /**
  * Contestant thread.
@@ -17,11 +16,11 @@ public class TContestant extends Thread {
     /**
      * Reference the contestants bench.
      */
-    private final IContestantsBench_Contestant contestantsBench;
+    private final IContestantsBenchStub_Contestant contestantsBench;
     /**
      * Reference the playground.
      */
-    private final IPlayground_Contestant playground;
+    private final IPlaygroundStub_Contestant playground;
     /**
      * The team number.
      */
@@ -49,7 +48,7 @@ public class TContestant extends Thread {
      * @param strength         the contestant's strength
      * @param maxSleepMs       the maximum sleep time in milliseconds
      */
-    public TContestant(IContestantsBench_Contestant contestantsBench, IPlayground_Contestant playground, int team, int contestant, int strength, int maxSleepMs) {
+    public TContestant(IContestantsBenchStub_Contestant contestantsBench, IPlaygroundStub_Contestant playground, int team, int contestant, int strength, int maxSleepMs) {
         this.contestantsBench = contestantsBench;
         this.playground = playground;
         this.team = team;

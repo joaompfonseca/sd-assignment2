@@ -1,8 +1,6 @@
 package client.entities;
 
 import client.stubs.contestantsbench.IContestantsBenchStub_Coach;
-import playground.IPlayground_Coach;
-import refereesite.IRefereeSite_Coach;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -27,11 +25,11 @@ public class TCoach extends Thread {
     /**
      * Reference the playground.
      */
-    private final IPlayground_Coach playground;
+    private final IPlaygroundStub_Coach playground;
     /**
      * Reference the referee site.
      */
-    private final IRefereeSite_Coach refereeSite;
+    private final IRefereeSiteStub_Coach refereeSite;
     /**
      * The team number.
      */
@@ -60,7 +58,7 @@ public class TCoach extends Thread {
      * @param contestantsPerTrial the number of contestants per trial
      * @param mistakeProbability  the probability of making a mistake when selecting contestants
      */
-    public TCoach(IContestantsBenchStub_Coach contestantsBench, IPlayground_Coach playground, IRefereeSite_Coach refereeSite, int team, int contestantsPerTeam, int contestantsPerTrial, double mistakeProbability) {
+    public TCoach(IContestantsBenchStub_Coach contestantsBench, IPlaygroundStub_Coach playground, IRefereeSiteStub_Coach refereeSite, int team, int contestantsPerTeam, int contestantsPerTrial, double mistakeProbability) {
         this.contestantsBench = contestantsBench;
         this.playground = playground;
         this.refereeSite = refereeSite;
