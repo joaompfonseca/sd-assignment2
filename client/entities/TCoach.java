@@ -1,6 +1,6 @@
 package client.entities;
 
-import contestantsbench.IContestantsBench_Coach;
+import client.stubs.contestantsbench.IContestantsBenchStub_Coach;
 import playground.IPlayground_Coach;
 import refereesite.IRefereeSite_Coach;
 
@@ -23,7 +23,7 @@ public class TCoach extends Thread {
     /**
      * Reference the contestants bench.
      */
-    private final IContestantsBench_Coach contestantsBench;
+    private final IContestantsBenchStub_Coach contestantsBench;
     /**
      * Reference the playground.
      */
@@ -60,7 +60,7 @@ public class TCoach extends Thread {
      * @param contestantsPerTrial the number of contestants per trial
      * @param mistakeProbability  the probability of making a mistake when selecting contestants
      */
-    public TCoach(IContestantsBench_Coach contestantsBench, IPlayground_Coach playground, IRefereeSite_Coach refereeSite, int team, int contestantsPerTeam, int contestantsPerTrial, double mistakeProbability) {
+    public TCoach(IContestantsBenchStub_Coach contestantsBench, IPlayground_Coach playground, IRefereeSite_Coach refereeSite, int team, int contestantsPerTeam, int contestantsPerTrial, double mistakeProbability) {
         this.contestantsBench = contestantsBench;
         this.playground = playground;
         this.refereeSite = refereeSite;

@@ -12,7 +12,7 @@ public class Message implements Serializable {
     /**
      * Serialization key.
      */
-    private static final long serialVersionUID = 2021L;
+
 
     /**
      * Message type.
