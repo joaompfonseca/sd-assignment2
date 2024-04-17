@@ -1,6 +1,8 @@
 package client.entities;
 
 import client.stubs.contestantsbench.IContestantsBenchStub_Coach;
+import client.stubs.playground.IPlaygroundStub_Coach;
+import client.stubs.refereesite.IRefereeSiteStub_Coach;
 
 import java.util.Arrays;
 import java.util.Comparator;

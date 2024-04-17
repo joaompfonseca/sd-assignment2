@@ -1,5 +1,8 @@
 package client.entities;
 
+import client.stubs.playground.IPlaygroundStub_Referee;
+import client.stubs.refereesite.IRefereeSiteStub_Referee;
+
 /**
  * Referee thread.
  * <p>

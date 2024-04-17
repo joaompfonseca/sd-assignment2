@@ -5,6 +5,9 @@ package communication;
  * Errors are reported.
  *
  * @param <R> data type of stored objects
+ * @author Diogo Paiva (103183)
+ * @author João Fonseca (103154)
+ * @version 1.0
  */
 public class MemFIFO<R> extends MemObject<R> {
     /**

@@ -1,6 +1,10 @@
 package client.main;
 
 import client.entities.TReferee;
+import client.stubs.playground.IPlaygroundStub;
+import client.stubs.playground.PlaygroundStub;
+import client.stubs.refereesite.IRefereeSiteStub;
+import client.stubs.refereesite.RefereeSiteStub;
 import configuration.Config;
 
 /**

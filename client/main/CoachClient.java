@@ -3,6 +3,10 @@ package client.main;
 import client.entities.TCoach;
 import client.stubs.contestantsbench.ContestantsBenchStub;
 import client.stubs.contestantsbench.IContestantsBenchStub;
+import client.stubs.playground.IPlaygroundStub;
+import client.stubs.playground.PlaygroundStub;
+import client.stubs.refereesite.IRefereeSiteStub;
+import client.stubs.refereesite.RefereeSiteStub;
 import configuration.Config;
 
 /**

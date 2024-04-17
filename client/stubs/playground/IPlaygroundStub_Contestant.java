@@ -1,13 +1,13 @@
-package playground;
+package client.stubs.playground;
 
 /**
- * Interface for the contestant in the playground.
+ * Interface for the contestant in the playground stub.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IPlayground_Contestant {
+public interface IPlaygroundStub_Contestant {
     /**
      * The last contestant from each team informs the coach that they are ready. The contestant waits for the trial to
      * start by the referee.

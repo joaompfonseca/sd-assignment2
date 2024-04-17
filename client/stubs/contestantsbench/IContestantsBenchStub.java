@@ -2,7 +2,7 @@ package client.stubs.contestantsbench;
 
 /**
  * General interface for the contestants bench stub, that extends from the contestants bench stub interfaces for the
- * contestant and the coach.
+ * coach and the contestant.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)

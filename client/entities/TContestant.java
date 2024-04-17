@@ -1,6 +1,7 @@
 package client.entities;
 
 import client.stubs.contestantsbench.IContestantsBenchStub_Contestant;
+import client.stubs.playground.IPlaygroundStub_Contestant;
 
 /**
  * Contestant thread.
@@ -75,7 +76,7 @@ public class TContestant extends Thread {
                 e.printStackTrace();
                 break;
             }
-            strength = playground.pullTheRope(team, strength, contestant);
+            strength = playground.pullTheRope(team, contestant, strength);
             playground.amDone();
         }
     }

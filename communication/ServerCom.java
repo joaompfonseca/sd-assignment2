@@ -10,6 +10,10 @@ import java.net.*;
  * It supposes the setup of a communication channel between the two end points before data transfer can take place.
  * Data transfer is bidirectional and is made through the transmission and the reception of objects in output and
  * input streams, respectively.
+ *
+ * @author Diogo Paiva (103183)
+ * @author João Fonseca (103154)
+ * @version 1.0
  */
 public class ServerCom {
     /**
@@ -66,9 +70,9 @@ public class ServerCom {
     public void start() {
         try {
             listeningSocket = new ServerSocket(serverPortNumb);
-            listeningSocket.setSoTimeout(1000);                                   // fixing a 1 s time out in listening to a connection request
-        } catch (BindException e)                              // fatal error --- port already in use
-        {
+            listeningSocket.setSoTimeout(1000); // fixing a 1 s time out in listening to a connection request
+        } catch (BindException e) {
+            // fatal error --- port already in use
             System.out.println(Thread.currentThread().getName() +
                     " - it was not possible the association of the listening socket to the port: " +
                     serverPortNumb + "!");
@@ -79,8 +83,8 @@ public class ServerCom {
                     " - an error has occurred on fixing a listening timeout!");
             e.printStackTrace();
             System.exit(1);
-        } catch (IOException e)                                // fatal error --- other reasons
-        {
+        } catch (IOException e) {
+            // fatal error --- other reasons
             System.out.println(Thread.currentThread().getName() +
                     " - an indeterminate error has occurred in establishing the connection at: " +
                     serverPortNumb + "!");
@@ -116,7 +120,7 @@ public class ServerCom {
      * @throws SocketTimeoutException when a timeout is reached on the listening process
      */
     public ServerCom accept() throws SocketTimeoutException {
-        ServerCom scon;                                      // communication channel
+        ServerCom scon; // communication channel
 
         scon = new ServerCom(serverPortNumb, listeningSocket);
         try {

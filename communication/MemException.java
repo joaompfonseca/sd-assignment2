@@ -6,6 +6,10 @@ package communication;
  * memory instantiation without assigned storage space;
  * write operation on a full memory;
  * read operation on an empty memory.
+ *
+ * @author Diogo Paiva (103183)
+ * @author João Fonseca (103154)
+ * @version 1.0
  */
 public class MemException extends Exception {
     /**

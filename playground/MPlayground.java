@@ -127,7 +127,7 @@ public class MPlayground implements IPlayground {
      * The last contestant from each team informs the coach that they are ready. The contestant waits for the trial to
      * start by the referee.
      *
-     * @param team the team
+     * @param team       the team
      * @param contestant the contestant
      */
     @Override
@@ -204,21 +204,21 @@ public class MPlayground implements IPlayground {
      * The contestant pulls the rope with a similar distance as his current strength. The contestant loses 1 unit of
      * strength after pulling the rope.
      *
-     * @param team     the team
-     * @param strength the current strength
+     * @param team       the team
      * @param contestant the contestant
+     * @param strength   the current strength
      * @return the updated strength
      */
     @Override
-    public int pullTheRope(int team, int strength, int contestant) {
+    public int pullTheRope(int team, int contestant, int strength) {
         lock.lock();
         ropePosition += (team == 0) ? -strength : strength;
         // If strength is already the minimum (1), it will remain like that
         if (strength > 1) {
             strength--;
-            generalRepository.pullTheRope(team, contestant,true);
+            generalRepository.pullTheRope(team, contestant, true);
         } else {
-            generalRepository.pullTheRope(team, contestant,false);
+            generalRepository.pullTheRope(team, contestant, false);
         }
         lock.unlock();
         return strength;

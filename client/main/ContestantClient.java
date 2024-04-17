@@ -3,6 +3,8 @@ package client.main;
 import client.entities.TContestant;
 import client.stubs.contestantsbench.ContestantsBenchStub;
 import client.stubs.contestantsbench.IContestantsBenchStub;
+import client.stubs.playground.IPlaygroundStub;
+import client.stubs.playground.PlaygroundStub;
 import configuration.Config;
 
 /**

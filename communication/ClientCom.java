@@ -10,6 +10,10 @@ import java.net.*;
  * It supposes the setup of a communication channel between the two end points before data transfer can take place.
  * Data transfer is bidirectional and is made through the transmission and the reception of objects in output and
  * input streams, respectively.
+ *
+ * @author Diogo Paiva (103183)
+ * @author João Fonseca (103154)
+ * @version 1.0
  */
 public class ClientCom {
     /**
@@ -58,9 +62,9 @@ public class ClientCom {
      * false, otherwise
      */
     public boolean open() {
-        boolean success = true;                                                                      // flag signaling
+        boolean success = true; // flag signaling
         // success on opening the communication channel
-        SocketAddress serverAddress = new InetSocketAddress(serverHostName, serverPortNumb);        // inet address
+        SocketAddress serverAddress = new InetSocketAddress(serverHostName, serverPortNumb); // inet address
 
         try {
             commSocket = new Socket();
@@ -92,8 +96,8 @@ public class ClientCom {
                     " - time out has occurred in establishing the connection at: " +
                     serverHostName + "." + serverPortNumb + "!");
             success = false;
-        } catch (IOException e)                                // fatal error --- other reasons
-        {
+        } catch (IOException e) {
+            // fatal error --- other reasons
             System.out.println(Thread.currentThread().getName() +
                     " - an indeterminate error has occurred in establishing the connection at: " +
                     serverHostName + "." + serverPortNumb + "!");
@@ -165,7 +169,7 @@ public class ClientCom {
      * @return reference to the object that was read
      */
     public Object readObject() {
-        Object fromServer = null;                            // object that is read
+        Object fromServer = null; // object that is read
 
         try {
             fromServer = in.readObject();
