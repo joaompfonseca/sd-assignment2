@@ -2,7 +2,6 @@ package client.stubs.playground;
 
 import communication.ClientCom;
 import communication.message.*;
-import configuration.Config;
 
 /**
  * Implementation of the playground stub.
@@ -17,11 +16,11 @@ public class PlaygroundStub implements IPlaygroundStub {
     /**
      * Server hostname.
      */
-    private String host;
+    private final String host;
     /**
      * Server port.
      */
-    private int port;
+    private final int port;
 
     /**
      * Instantiation of the playground stub.
@@ -47,8 +46,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -83,8 +83,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -121,8 +122,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -158,8 +160,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -192,8 +195,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -232,8 +236,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -269,8 +274,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -305,8 +311,9 @@ public class PlaygroundStub implements IPlaygroundStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

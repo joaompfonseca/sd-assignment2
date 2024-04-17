@@ -19,6 +19,9 @@ public class MessageRefereeDeclareGameWinnerRequest extends Message {
 
     /**
      * Instantiation of the referee declare game winner message (request).
+     *
+     * @param team     the team
+     * @param knockout the knockout flag
      */
     public MessageRefereeDeclareGameWinnerRequest(int team, boolean knockout) {
         super(MessageType.REFEREE_DECLARE_GAME_WINNER_REQUEST);

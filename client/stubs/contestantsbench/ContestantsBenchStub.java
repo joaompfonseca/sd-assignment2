@@ -17,11 +17,11 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
     /**
      * Server hostname.
      */
-    private String host;
+    private final String host;
     /**
      * Server port.
      */
-    private int port;
+    private final int port;
 
     /**
      * Instantiation of the contestants bench stub.
@@ -47,8 +47,9 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -80,20 +81,21 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         ClientCom com;
         MessageCoachGetTeamStrengthsRequest outMessage;
         MessageCoachGetTeamStrengthsReply inMessage;
-        
+
         // Open connection
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        
+
         // Outgoing message
         outMessage = new MessageCoachGetTeamStrengthsRequest(team);
         com.writeObject(outMessage);
-        
+
         // Incoming message
         inMessage = (MessageCoachGetTeamStrengthsReply) com.readObject();
         if (inMessage.getType() != MessageType.COACH_GET_TEAM_STRENGTHS_REPLY) {
@@ -129,8 +131,9 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -170,8 +173,9 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -215,8 +219,9 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -253,8 +258,8 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
             }
         }
 

@@ -105,7 +105,7 @@ public class CoachClient {
             for (Thread tCoach : tCoaches) {
                 tCoach.join();
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -113,5 +113,11 @@ public class CoachClient {
         cbStub.shutdown();
         pgStub.shutdown();
         rsStub.shutdown();
+    }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private CoachClient() {
     }
 }

@@ -20,7 +20,8 @@ public class MessageCoachSetTeamIsMatchEndRequest extends Message {
     /**
      * Instantiation of the coach set team is match end message (request).
      *
-     * @param team the team
+     * @param team       the team
+     * @param isMatchEnd the match end flag
      */
     public MessageCoachSetTeamIsMatchEndRequest(int team, boolean isMatchEnd) {
         super(MessageType.COACH_SET_TEAM_IS_MATCH_END_REQUEST);

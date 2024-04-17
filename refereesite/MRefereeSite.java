@@ -1,7 +1,6 @@
 package refereesite;
 
 import generalrepository.IGeneralRepository_Site;
-import generalrepository.MGeneralRepository;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -53,6 +52,8 @@ public class MRefereeSite implements IRefereeSite {
 
     /**
      * Instantiation of the referee site monitor.
+     *
+     * @param generalRepository the general repository
      */
     public MRefereeSite(IGeneralRepository_Site generalRepository) {
         this.generalRepository = generalRepository;
@@ -70,7 +71,6 @@ public class MRefereeSite implements IRefereeSite {
      * The coach waits for the referee command.
      *
      * @param team the team of the coach
-     *
      * @return true if the match has not ended, false otherwise
      */
     @Override
@@ -89,7 +89,7 @@ public class MRefereeSite implements IRefereeSite {
                 isRefereeCommand = false;
             }
             generalRepository.reviewNotes(team);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -102,7 +102,12 @@ public class MRefereeSite implements IRefereeSite {
      */
     @Override
     public void announceNewGame() {
-        generalRepository.announceNewGame();
+        lock.lock();
+        try {
+            generalRepository.announceNewGame();
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -120,7 +125,7 @@ public class MRefereeSite implements IRefereeSite {
             isRefereeCommand = true;
             generalRepository.callTrial();
             refereeCommand.signalAll(); // alerts coaches
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -130,7 +135,7 @@ public class MRefereeSite implements IRefereeSite {
     /**
      * The referee declares the team that won the game.
      *
-     * @param team the team that won the game
+     * @param team     the team that won the game
      * @param knockout true if the game was a knockout, false otherwise
      */
     @Override
@@ -163,7 +168,7 @@ public class MRefereeSite implements IRefereeSite {
             isRefereeCommand = true;
             generalRepository.declareMatchWinner(team);
             refereeCommand.signalAll(); // alerts coaches
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();

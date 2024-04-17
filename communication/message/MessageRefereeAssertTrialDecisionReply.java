@@ -11,10 +11,12 @@ public class MessageRefereeAssertTrialDecisionReply extends Message {
     /**
      * The rope position.
      */
-    private int ropePosition;
+    private final int ropePosition;
 
     /**
      * Instantiation of the referee assert trial decision message (reply).
+     *
+     * @param ropePosition the rope position
      */
     public MessageRefereeAssertTrialDecisionReply(int ropePosition) {
         super(MessageType.REFEREE_ASSERT_TRIAL_DECISION_REPLY);

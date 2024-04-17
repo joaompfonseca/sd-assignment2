@@ -90,12 +90,18 @@ public class ContestantClient {
             for (Thread tContestant : tContestants) {
                 tContestant.join();
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         // Shutdown stubs
         cbStub.shutdown();
         pgStub.shutdown();
+    }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private ContestantClient() {
     }
 }

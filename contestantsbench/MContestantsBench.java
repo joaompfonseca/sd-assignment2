@@ -2,7 +2,6 @@ package contestantsbench;
 
 import generalrepository.IGeneralRepository_Bench;
 
-import java.util.Arrays;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -84,6 +83,7 @@ public class MContestantsBench implements IContestantsBench {
      *
      * @param contestantsPerTeam the number of contestants per team
      * @param maxStrength        the maximum strength of a contestant
+     * @param generalRepository  the general repository
      */
     public MContestantsBench(int contestantsPerTeam, int maxStrength, IGeneralRepository_Bench generalRepository) {
         this.contestantsPerTeam = contestantsPerTeam;
@@ -127,8 +127,11 @@ public class MContestantsBench implements IContestantsBench {
     public void setTeamIsMatchEnd(int team, boolean isMatchEnd) {
         TeamData teamData = this.teamData[team];
         lock.lock();
-        teamData.isMatchEnd = isMatchEnd;
-        lock.unlock();
+        try {
+            teamData.isMatchEnd = isMatchEnd;
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -156,11 +159,11 @@ public class MContestantsBench implements IContestantsBench {
             while (!teamData.selected[contestant]) {
                 teamData.teamAssembled.await(); // releases the lock and waits
                 if (!teamData.selected[contestant] && teamData.strengths[contestant] < maxStrength) {
-                   teamData.strengths[contestant]++; // stays seated, so strength increases
-                   generalRepository.seatDown(team, contestant, true);
+                    teamData.strengths[contestant]++; // stays seated, so strength increases
+                    generalRepository.seatDown(team, contestant, true);
                 }
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -186,7 +189,7 @@ public class MContestantsBench implements IContestantsBench {
             teamData.selected = selected;
             generalRepository.callContestants(team);
             teamData.teamAssembled.signalAll();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -196,7 +199,7 @@ public class MContestantsBench implements IContestantsBench {
     /**
      * The contestant follows the coach advice.
      *
-     * @param team the team
+     * @param team       the team
      * @param contestant the contestant
      * @return true if the match has not ended, false otherwise
      */
@@ -204,9 +207,12 @@ public class MContestantsBench implements IContestantsBench {
     public boolean followCoachAdvice(int team, int contestant) {
         TeamData teamData = this.teamData[team];
         lock.lock();
-        teamData.countSeatedDown--;
-        generalRepository.followCoachAdvice(team, contestant);
-        lock.unlock();
+        try {
+            teamData.countSeatedDown--;
+            generalRepository.followCoachAdvice(team, contestant);
+        } finally {
+            lock.unlock();
+        }
         return !teamData.isMatchEnd;
     }
 }

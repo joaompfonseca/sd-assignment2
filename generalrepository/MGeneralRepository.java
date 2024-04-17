@@ -109,6 +109,7 @@ public class MGeneralRepository implements IGeneralRepository {
      * Instantiation of the general repository.
      *
      * @param nContestants the number of contestants
+     * @param logsFolder   the logs folder
      */
     public MGeneralRepository(int nContestants, String logsFolder) {
         this.refereeStatus = START_OF_THE_MATCH.label;
@@ -168,24 +169,24 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void seatDown(int team, int id, boolean increaseStrength) {
         lock.lock();
-
-        if (team == 0) {
-            contestantsTeam1.get(id).status = SEAT_AT_THE_BENCH.label;
-            if (increaseStrength) {
-                contestantsTeam1.get(id).strength++;
+        try {
+            if (team == 0) {
+                contestantsTeam1.get(id).status = SEAT_AT_THE_BENCH.label;
+                if (increaseStrength) {
+                    contestantsTeam1.get(id).strength++;
+                }
+            } else {
+                contestantsTeam2.get(id).status = SEAT_AT_THE_BENCH.label;
+                if (increaseStrength) {
+                    contestantsTeam2.get(id).strength++;
+                }
             }
-        } else {
-            contestantsTeam2.get(id).status = SEAT_AT_THE_BENCH.label;
-            if (increaseStrength) {
-                contestantsTeam2.get(id).strength++;
+            if (!matchEnd) {
+                print();
             }
+        } finally {
+            lock.unlock();
         }
-
-        if (!matchEnd) {
-            print();
-        }
-
-        lock.unlock();
     }
 
     /**
@@ -196,18 +197,18 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void callContestants(int team) {
         lock.lock();
-
-        if (team == 0) {
-            coachesTeam1Status = ASSEMBLE_TEAM.label;
-        } else {
-            coachesTeam2Status = ASSEMBLE_TEAM.label;
+        try {
+            if (team == 0) {
+                coachesTeam1Status = ASSEMBLE_TEAM.label;
+            } else {
+                coachesTeam2Status = ASSEMBLE_TEAM.label;
+            }
+            if (!matchEnd) {
+                print();
+            }
+        } finally {
+            lock.unlock();
         }
-
-        if (!matchEnd) {
-            print();
-        }
-
-        lock.unlock();
     }
 
     /**
@@ -219,18 +220,19 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void followCoachAdvice(int team, int id) {
         lock.lock();
+        try {
+            if (team == 0) {
+                contestantsTeam1.get(id).status = STAND_IN_POSITION.label;
+            } else {
+                contestantsTeam2.get(id).status = STAND_IN_POSITION.label;
+            }
 
-        if (team == 0) {
-            contestantsTeam1.get(id).status = STAND_IN_POSITION.label;
-        } else {
-            contestantsTeam2.get(id).status = STAND_IN_POSITION.label;
+            if (!matchEnd) {
+                print();
+            }
+        } finally {
+            lock.unlock();
         }
-
-        if (!matchEnd) {
-            print();
-        }
-
-        lock.unlock();
     }
 
     /**
@@ -242,18 +244,18 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void getReady(int team, int id) {
         lock.lock();
-
-        if (team == 0) {
-            contestantsTeam1.get(id).status = DO_YOUR_BEST.label;
-            selectedContestantsTeam1.add(id);
-        } else {
-            contestantsTeam2.get(id).status = DO_YOUR_BEST.label;
-            selectedContestantsTeam2.add(id);
+        try {
+            if (team == 0) {
+                contestantsTeam1.get(id).status = DO_YOUR_BEST.label;
+                selectedContestantsTeam1.add(id);
+            } else {
+                contestantsTeam2.get(id).status = DO_YOUR_BEST.label;
+                selectedContestantsTeam2.add(id);
+            }
+            print();
+        } finally {
+            lock.unlock();
         }
-
-        print();
-
-        lock.unlock();
     }
 
     /**
@@ -264,16 +266,16 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void informReferee(int team) {
         lock.lock();
-
-        if (team == 0) {
-            coachesTeam1Status = WATCH_TRIAL.label;
-        } else {
-            coachesTeam2Status = WATCH_TRIAL.label;
+        try {
+            if (team == 0) {
+                coachesTeam1Status = WATCH_TRIAL.label;
+            } else {
+                coachesTeam2Status = WATCH_TRIAL.label;
+            }
+            print();
+        } finally {
+            lock.unlock();
         }
-
-        print();
-
-        lock.unlock();
     }
 
     /**
@@ -282,18 +284,17 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void startTrial() {
         lock.lock();
-
-        refereeStatus = WAIT_FOR_TRIAL_CONCLUSION.label;
-
-        if (ropePosition == null) {
-            ropePosition = 0;
-        } else {
-            ropePosition = nextRopePosition;
+        try {
+            refereeStatus = WAIT_FOR_TRIAL_CONCLUSION.label;
+            if (ropePosition == null) {
+                ropePosition = 0;
+            } else {
+                ropePosition = nextRopePosition;
+            }
+            print();
+        } finally {
+            lock.unlock();
         }
-
-        print();
-
-        lock.unlock();
     }
 
     /**
@@ -306,22 +307,22 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void pullTheRope(int team, int contestant, boolean reduce) {
         lock.lock();
-
-        if (team == 0) {
-            contestantsTeam1.get(contestant).status = DO_YOUR_BEST.label;
-            if (reduce) {
-                contestantsTeam1.get(contestant).strength--;
+        try {
+            if (team == 0) {
+                contestantsTeam1.get(contestant).status = DO_YOUR_BEST.label;
+                if (reduce) {
+                    contestantsTeam1.get(contestant).strength--;
+                }
+            } else {
+                contestantsTeam2.get(contestant).status = DO_YOUR_BEST.label;
+                if (reduce) {
+                    contestantsTeam2.get(contestant).strength--;
+                }
             }
-        } else {
-            contestantsTeam2.get(contestant).status = DO_YOUR_BEST.label;
-            if (reduce) {
-                contestantsTeam2.get(contestant).strength--;
-            }
+            print();
+        } finally {
+            lock.unlock();
         }
-
-        print();
-
-        lock.unlock();
     }
 
     /**
@@ -330,12 +331,12 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void amDone() {
         lock.lock();
-
-        // It's not necessary to do anything here because the contestant doesn't need to change its status or strength
-
-        print();
-
-        lock.unlock();
+        try {
+            // It's not necessary to do anything here because the contestant doesn't need to change its status or strength
+            print();
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -346,13 +347,13 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void assertTrialDecision(int p) {
         lock.lock();
-
-        // Save rope position
-        nextRopePosition = p;
-
-        print();
-
-        lock.unlock();
+        try {
+            // Save rope position
+            nextRopePosition = p;
+            print();
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -363,18 +364,18 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void reviewNotes(int team) {
         lock.lock();
-
-        if (team == 0) {
-            coachesTeam1Status = WAIT_FOR_REFEREE_COMMAND.label;
-        } else {
-            coachesTeam2Status = WAIT_FOR_REFEREE_COMMAND.label;
+        try {
+            if (team == 0) {
+                coachesTeam1Status = WAIT_FOR_REFEREE_COMMAND.label;
+            } else {
+                coachesTeam2Status = WAIT_FOR_REFEREE_COMMAND.label;
+            }
+            if (!matchEnd) {
+                print();
+            }
+        } finally {
+            lock.unlock();
         }
-
-        if (!matchEnd) {
-            print();
-        }
-
-        lock.unlock();
     }
 
     /**
@@ -383,20 +384,20 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void announceNewGame() {
         lock.lock();
+        try {
+            refereeStatus = START_OF_A_GAME.label;
+            ropePosition = null;
+            nTrials = 0;
+            nGames++;
 
-        refereeStatus = START_OF_A_GAME.label;
-        ropePosition = null;
-        nTrials = 0;
-        nGames++;
-
-        fileWriter.println("Game " + nGames);
-        fileWriter.printf("Ref Coa 1 Cont 1 Cont 2 Cont 3 Cont 4 Cont 5 Coa 2 Cont 1 Cont 2 Cont 3 Cont 4 Cont 5       Trial        %n");
-        fileWriter.printf("Sta  Stat Sta SG Sta SG Sta SG Sta SG Sta SG  Stat Sta SG Sta SG Sta SG Sta SG Sta SG 3 2 1 . 1 2 3 NB PS%n");
-        fileWriter.printf("001  #### ### ## ### ## ### ## ### ## ### ##  #### ### ## ### ## ### ## ### ## ### ## # # # . # # # ## ##%n");
-
-        print();
-
-        lock.unlock();
+            fileWriter.println("Game " + nGames);
+            fileWriter.printf("Ref Coa 1 Cont 1 Cont 2 Cont 3 Cont 4 Cont 5 Coa 2 Cont 1 Cont 2 Cont 3 Cont 4 Cont 5       Trial        %n");
+            fileWriter.printf("Sta  Stat Sta SG Sta SG Sta SG Sta SG Sta SG  Stat Sta SG Sta SG Sta SG Sta SG Sta SG 3 2 1 . 1 2 3 NB PS%n");
+            fileWriter.printf("001  #### ### ## ### ## ### ## ### ## ### ##  #### ### ## ### ## ### ## ### ## ### ## # # # . # # # ## ##%n");
+            print();
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -405,17 +406,18 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void callTrial() {
         lock.lock();
+        try {
+            selectedContestantsTeam1.clear();
+            selectedContestantsTeam2.clear();
 
-        selectedContestantsTeam1.clear();
-        selectedContestantsTeam2.clear();
+            refereeStatus = TEAMS_READY.label;
 
-        refereeStatus = TEAMS_READY.label;
+            nTrials++;
 
-        nTrials++;
-
-        print();
-
-        lock.unlock();
+            print();
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -427,28 +429,29 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void declareGameWinner(int team, boolean knockout) {
         lock.lock();
+        try {
+            refereeStatus = END_OF_A_GAME.label;
 
-        refereeStatus = END_OF_A_GAME.label;
+            print();
 
-        print();
+            if (team == 0) {
+                wonGames.put(0, wonGames.get(0) + 1);
+            } else if (team == 1) {
+                wonGames.put(1, wonGames.get(1) + 1);
+            }
 
-        if (team == 0) {
-            wonGames.put(0, wonGames.get(0) + 1);
-        } else if (team == 1) {
-            wonGames.put(1, wonGames.get(1) + 1);
+            String output = "Game " + nGames;
+            if (team == -1) {
+                output += " was a draw.";
+            } else if (knockout) {
+                output += " was won by team " + team + " by knockout out in " + nTrials + " trials.";
+            } else {
+                output += " ended by points.";
+            }
+            fileWriter.println(output);
+        } finally {
+            lock.unlock();
         }
-
-        String output = "Game " + nGames;
-        if (team == -1) {
-            output += " was a draw.";
-        } else if (knockout) {
-            output += " was won by team " + team + " by knockout out in " + nTrials + " trials.";
-        } else {
-            output += " ended by points.";
-        }
-        fileWriter.println(output);
-
-        lock.unlock();
     }
 
     /**
@@ -459,31 +462,32 @@ public class MGeneralRepository implements IGeneralRepository {
     @Override
     public void declareMatchWinner(int team) {
         lock.lock();
+        try {
+            refereeStatus = END_OF_THE_MATCH.label;
 
-        refereeStatus = END_OF_THE_MATCH.label;
+            print();
 
-        print();
+            String output;
+            if (team == -1) {
+                output = "The match ended in a draw.";
+            } else {
+                output = "The match was won by team " + team + " (" + wonGames.get(0) + "-" + wonGames.get(1) + ").";
+            }
+            fileWriter.println(output);
 
-        String output;
-        if (team == -1) {
-            output = "The match ended in a draw.";
-        } else {
-            output = "The match was won by team " + team + " (" + wonGames.get(0) + "-" + wonGames.get(1) + ").";
+            // Close file writer
+            fileWriter.close();
+
+            matchEnd = true;
+        } finally {
+            lock.unlock();
         }
-        fileWriter.println(output);
-
-        // Close file writer
-        fileWriter.close();
-
-        matchEnd = true;
-
-        lock.unlock();
     }
 
     /**
      * Print the current state of the game.
      */
-    public void print() {
+    private void print() {
 
         String rStatus = refereeStatus == null ? "###" : refereeStatus;
 
@@ -535,7 +539,14 @@ public class MGeneralRepository implements IGeneralRepository {
                 rStatus, cTeam1Status, getContestantStatus(0, 0), getContestantStrength(0, 0), getContestantStatus(0, 1), getContestantStrength(0, 1), getContestantStatus(0, 2), getContestantStrength(0, 2), getContestantStatus(0, 3), getContestantStrength(0, 3), getContestantStatus(0, 4), getContestantStrength(0, 4), cTeam2Status, getContestantStatus(1, 0), getContestantStrength(1, 0), getContestantStatus(1, 1), getContestantStrength(1, 1), getContestantStatus(1, 2), getContestantStrength(1, 2), getContestantStatus(1, 3), getContestantStrength(1, 3), getContestantStatus(1, 4), getContestantStrength(1, 4), s1Team1, s2Team1, s3Team1, s1Team2, s2Team2, s3Team2, nT, rP);
     }
 
-    public String getContestantStatus(int team, int id) {
+    /**
+     * Get the status of the contestant.
+     *
+     * @param team the team
+     * @param id   the id of the contestant
+     * @return the status of the contestant
+     */
+    private String getContestantStatus(int team, int id) {
         String res;
         if (team == 0) {
             res = contestantsTeam1.get(id).status;
@@ -545,7 +556,14 @@ public class MGeneralRepository implements IGeneralRepository {
         return res == null ? "###" : res;
     }
 
-    public String getContestantStrength(int team, int id) {
+    /**
+     * Get the strength of the contestant.
+     *
+     * @param team the team
+     * @param id   the id of the contestant
+     * @return the strength of the contestant
+     */
+    private String getContestantStrength(int team, int id) {
         String res;
         if (team == 0) {
             res = contestantsTeam1.get(id).status == null ? "##" : Integer.toString(contestantsTeam1.get(id).strength);

@@ -24,12 +24,12 @@ public class ClientCom {
     /**
      * Name of the computational system where the server is located.
      */
-    private String serverHostName;
+    private final String serverHostName;
 
     /**
      * Number of the listening port at the computational system where the server is located.
      */
-    private int serverPortNumb;
+    private final int serverPortNumb;
 
     /**
      * Input stream of the communication channel.

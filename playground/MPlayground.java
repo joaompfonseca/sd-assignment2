@@ -94,6 +94,7 @@ public class MPlayground implements IPlayground {
      * Instantiation of the playground monitor.
      *
      * @param contestantsPerTrial the number of contestants per trial
+     * @param generalRepository   the general repository
      */
     public MPlayground(int contestantsPerTrial, IGeneralRepository_Playground generalRepository) {
         this.contestantsPerTrial = contestantsPerTrial;
@@ -119,8 +120,12 @@ public class MPlayground implements IPlayground {
      */
     @Override
     public void setRopePosition(int ropePosition) {
-        //log("set rope position: %d".formatted(ropePosition));
-        this.ropePosition = ropePosition;
+        try {
+            lock.lock();
+            this.ropePosition = ropePosition;
+        } finally {
+            lock.unlock();
+        }
     }
 
     /**
@@ -143,7 +148,7 @@ public class MPlayground implements IPlayground {
             while (!isTrialStarted) {
                 trialStarted.await(); // releases lock and waits for referee
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -172,7 +177,7 @@ public class MPlayground implements IPlayground {
             while (!isTrialDecided) {
                 trialDecided.await(); // releases lock and waits for referee decision
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -193,7 +198,7 @@ public class MPlayground implements IPlayground {
             isTrialStarted = true;
             generalRepository.startTrial();
             trialStarted.signalAll(); // alerts contestants
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -212,15 +217,18 @@ public class MPlayground implements IPlayground {
     @Override
     public int pullTheRope(int team, int contestant, int strength) {
         lock.lock();
-        ropePosition += (team == 0) ? -strength : strength;
-        // If strength is already the minimum (1), it will remain like that
-        if (strength > 1) {
-            strength--;
-            generalRepository.pullTheRope(team, contestant, true);
-        } else {
-            generalRepository.pullTheRope(team, contestant, false);
+        try {
+            ropePosition += (team == 0) ? -strength : strength;
+            // If strength is already the minimum (1), it will remain like that
+            if (strength > 1) {
+                strength--;
+                generalRepository.pullTheRope(team, contestant, true);
+            } else {
+                generalRepository.pullTheRope(team, contestant, false);
+            }
+        } finally {
+            lock.unlock();
         }
-        lock.unlock();
         return strength;
     }
 
@@ -240,7 +248,7 @@ public class MPlayground implements IPlayground {
             while (!isTrialDecided) {
                 trialDecided.await(); // releases lock and waits for referee decision
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
@@ -267,7 +275,7 @@ public class MPlayground implements IPlayground {
             isTrialDecided = true;
             generalRepository.assertTrialDecision(ropePosition);
             trialDecided.signalAll(); // alerts contestants and coaches
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();

@@ -20,7 +20,8 @@ public class MessageCoachCallContestantsRequest extends Message {
     /**
      * Instantiation of the coach call contestants message (request).
      *
-     * @param team the team
+     * @param team     the team
+     * @param selected the selected contestants
      */
     public MessageCoachCallContestantsRequest(int team, boolean[] selected) {
         super(MessageType.COACH_CALL_CONTESTANTS_REQUEST);

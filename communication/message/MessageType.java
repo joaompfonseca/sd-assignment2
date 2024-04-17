@@ -152,4 +152,11 @@ public class MessageType {
      * Server shutdown (reply).
      */
     public static final int SHUTDOWN_REPLY = 101;
+
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private MessageType() {
+    }
 }

@@ -82,12 +82,18 @@ public class RefereeClient {
         // Wait for thread to finish
         try {
             tReferee.join();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         // Shutdown stubs
         pgStub.shutdown();
         rsStub.shutdown();
+    }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private RefereeClient() {
     }
 }

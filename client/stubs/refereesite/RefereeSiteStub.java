@@ -16,11 +16,11 @@ public class RefereeSiteStub implements IRefereeSiteStub {
     /**
      * Server hostname.
      */
-    private String host;
+    private final String host;
     /**
      * Server port.
      */
-    private int port;
+    private final int port;
 
     /**
      * Instantiation of the playground stub.
@@ -46,8 +46,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -83,8 +84,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -119,8 +121,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -154,8 +157,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -191,8 +195,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -228,8 +233,9 @@ public class RefereeSiteStub implements IRefereeSiteStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.currentThread().sleep(10);
-            } catch (InterruptedException e) {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

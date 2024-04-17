@@ -15,6 +15,8 @@ public class MessageRefereeDeclareMatchWinnerRequest extends Message {
 
     /**
      * Instantiation of the referee declare match winner message (request).
+     *
+     * @param team the team
      */
     public MessageRefereeDeclareMatchWinnerRequest(int team) {
         super(MessageType.REFEREE_DECLARE_MATCH_WINNER_REQUEST);

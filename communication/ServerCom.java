@@ -29,7 +29,7 @@ public class ServerCom {
     /**
      * Number of the listening port at the computational system where the server is located.
      */
-    private int serverPortNumb;
+    private final int serverPortNumb;
 
     /**
      * Input stream of the communication channel.
