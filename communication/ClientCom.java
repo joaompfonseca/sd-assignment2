@@ -62,8 +62,7 @@ public class ClientCom {
      * false, otherwise
      */
     public boolean open() {
-        boolean success = true; // flag signaling
-        // success on opening the communication channel
+        boolean success = true; // flag signaling success on opening the communication channel
         SocketAddress serverAddress = new InetSocketAddress(serverHostName, serverPortNumb); // inet address
 
         try {
