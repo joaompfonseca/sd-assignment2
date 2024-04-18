@@ -500,7 +500,7 @@ public class MGeneralRepository implements IGeneralRepository {
         String s1Team1, s2Team1, s3Team1, s1Team2, s2Team2, s3Team2;
 
         if (!selectedContestantsTeam1.isEmpty()) {
-            s1Team1 = Integer.toString(selectedContestantsTeam1.getFirst());
+            s1Team1 = Integer.toString(selectedContestantsTeam1.get(0));
         } else {
             s1Team1 = "#";
         }
@@ -518,7 +518,7 @@ public class MGeneralRepository implements IGeneralRepository {
         }
 
         if (!selectedContestantsTeam2.isEmpty()) {
-            s1Team2 = Integer.toString(selectedContestantsTeam2.getFirst());
+            s1Team2 = Integer.toString(selectedContestantsTeam2.get(0));
         } else {
             s1Team2 = "#";
         }
