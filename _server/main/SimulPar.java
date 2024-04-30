@@ -1,4 +1,4 @@
-package server.main;
+package _server.main;
 
 /**
  *    Definition of the simulation parameters.

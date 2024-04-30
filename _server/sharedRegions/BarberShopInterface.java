@@ -1,9 +1,10 @@
-package server.sharedRegions;
+package _server.sharedRegions;
 
-import server.main.*;
-import server.entities.*;
+import _server.main.*;
+import _server.entities.*;
 import client._entities.*;
 import commInfra.*;
+import communication.message.*;
 
 /**
  *  Interface to the Barber Shop.

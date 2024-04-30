@@ -1,6 +1,6 @@
-package server.entities;
+package _server.entities;
 
-import server.sharedRegions.*;
+import _server.sharedRegions.*;
 import commInfra.*;
 import genclass.GenericIO;
 
@@ -57,7 +57,7 @@ public class GeneralReposClientProxy extends Thread
       int proxyId;                                                   // instantiation identifier
 
       try
-      { cl = Class.forName ("server.entities.GeneralReposClientProxy");
+      { cl = Class.forName ("_server.entities.GeneralReposClientProxy");
       }
       catch (ClassNotFoundException e)
       { GenericIO.writelnString ("Data type GeneralReposClientProxy was not found!");

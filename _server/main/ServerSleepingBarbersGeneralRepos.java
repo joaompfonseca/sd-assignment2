@@ -1,7 +1,7 @@
-package server.main;
+package _server.main;
 
-import server.entities.*;
-import server.sharedRegions.*;
+import _server.entities.*;
+import _server.sharedRegions.*;
 import commInfra.*;
 import genclass.GenericIO;
 import java.net.*;

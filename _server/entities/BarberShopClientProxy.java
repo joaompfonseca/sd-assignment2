@@ -1,6 +1,6 @@
-package server.entities;
+package _server.entities;
 
-import server.sharedRegions.*;
+import _server.sharedRegions.*;
 import client._entities.*;
 import commInfra.*;
 import genclass.GenericIO;
@@ -82,7 +82,7 @@ public class BarberShopClientProxy extends Thread implements BarberCloning, Cust
       int proxyId;                                                   // instantiation identifier
 
       try
-      { cl = Class.forName ("server.entities.BarberShopClientProxy");
+      { cl = Class.forName ("_server.entities.BarberShopClientProxy");
       }
       catch (ClassNotFoundException e)
       { GenericIO.writelnString ("Data type BarberShopClientProxy was not found!");
