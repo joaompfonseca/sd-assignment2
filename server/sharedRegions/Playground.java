@@ -1,6 +1,7 @@
 package server.sharedRegions;
 
 import client.stubs.generalrepository.GeneralReposStub;
+import server.main.ServerSleepingPlayground;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -270,5 +271,19 @@ public class Playground {
             lock.unlock();
         }
         return ropePosition;
+    }
+
+    /**
+     * Operation server shutdown.
+     */
+    public void shutdown() {
+        lock.lock();
+        try {
+            trialDecided.signalAll();
+            reposStub.shutdown();
+            ServerSleepingPlayground.waitConnection = false;
+        } finally {
+            lock.unlock();
+        }
     }
 }

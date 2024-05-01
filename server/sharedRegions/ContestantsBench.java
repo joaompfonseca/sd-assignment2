@@ -1,6 +1,7 @@
 package server.sharedRegions;
 
 import client.stubs.generalrepository.GeneralReposStub;
+import server.main.ServerSleepingContestantsBench;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -205,5 +206,18 @@ public class ContestantsBench {
             lock.unlock();
         }
         return !teamData.isMatchEnd;
+    }
+
+    /**
+     * Operation server shutdown.
+     */
+    public void shutdown() {
+        lock.lock();
+        try {
+            reposStub.shutdown();
+            ServerSleepingContestantsBench.waitConnection = false;
+        } finally {
+            lock.unlock();
+        }
     }
 }

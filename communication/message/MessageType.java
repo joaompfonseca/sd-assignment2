@@ -145,6 +145,46 @@ public class MessageType {
      */
     public static final int REFEREE_DECLARE_MATCH_WINNER_REPLY = 33;
     /**
+     * Repository seat down (request).
+     */
+    public static final int REPOS_SEAT_DOWN_REQUEST = 34;
+    /**
+     * Repository seat down (reply).
+     */
+    public static final int REPOS_SEAT_DOWN_REPLY = 35;
+    /**
+     * Repository call contestants (request).
+     */
+    public static final int REPOS_CALL_CONTESTANTS_REQUEST = 36;
+    /**
+     * Repository call contestants (reply).
+     */
+    public static final int REPOS_CALL_CONTESTANTS_REPLY = 37;
+    /**
+     * Repository pull the rope (request).
+     */
+    public static final int REPOS_PULL_THE_ROPE_REQUEST = 38;
+    /**
+     * Repository pull the rope (reply).
+     */
+    public static final int REPOS_PULL_THE_ROPE_REPLY = 39;
+    /**
+     * Repository assert trial decision (request).
+     */
+    public static final int REPOS_ASSERT_TRIAL_DECISION_REQUEST = 40;
+    /**
+     * Repository assert trial decision (reply).
+     */
+    public static final int REPOS_ASSERT_TRIAL_DECISION_REPLY = 41;
+    /**
+     * Repository follow coach advice (reply).
+     */
+    public static final int REPOS_FOLLOW_COACH_ADVICE_REPLY = 42;
+    /**
+     * Repository review notes (reply).
+     */
+    public static final int REPOS_REVIEW_NOTES_REPLY = 43;
+    /**
      * Server shutdown (request).
      */
     public static final int SHUTDOWN_REQUEST = 100;

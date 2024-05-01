@@ -70,6 +70,10 @@ public class PlaygroundInterface {
             case MessageType.REFEREE_ASSERT_TRIAL_DECISION_REQUEST -> {
                 break;
             }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                break;
+            }
+            default -> throw new MessageException("Invalid message type!", inMessage);
         }
 
         /* processing */
@@ -112,6 +116,11 @@ public class PlaygroundInterface {
             case MessageType.REFEREE_ASSERT_TRIAL_DECISION_REQUEST -> {
                 int result = playground.assertTrialDecision();
                 outMessage = new MessageRefereeAssertTrialDecisionReply(result);
+                break;
+            }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                playground.shutdown();
+                outMessage = new MessageShutdownReply();
                 break;
             }
         }

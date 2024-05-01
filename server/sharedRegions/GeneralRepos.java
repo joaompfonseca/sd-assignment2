@@ -1,4 +1,7 @@
-package generalrepository;
+package server.sharedRegions;
+
+import server.main.ServerSleepingContestantsBench;
+import server.main.ServerSleepingGeneralRepos;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -7,18 +10,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static generalrepository.EGeneralRepository_Referee.*;
-import static generalrepository.EGeneralRepository_Contestant.*;
-import static generalrepository.EGeneralRepository_Coach.*;
+import static server.sharedRegions.EGeneralRepos_Coach.*;
+import static server.sharedRegions.EGeneralRepos_Contestant.*;
+import static server.sharedRegions.EGeneralRepos_Referee.*;
 
 /**
- * Implementation of the general repository monitor.
+ *  General Repository of Information.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public class MGeneralRepository implements IGeneralRepository {
+public class GeneralRepos {
     /**
      * Representation of a contestant.
      */
@@ -111,7 +114,7 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param nContestants the number of contestants
      * @param logsFolder   the logs folder
      */
-    public MGeneralRepository(int nContestants, String logsFolder) {
+    public GeneralRepos(int nContestants, String logsFolder) {
         this.refereeStatus = START_OF_THE_MATCH.label;
         this.coachesTeam1Status = null;
         this.coachesTeam2Status = null;
@@ -166,7 +169,6 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param id               the contestant id
      * @param increaseStrength if the strength of the contestant should be increased
      */
-    @Override
     public void seatDown(int team, int id, boolean increaseStrength) {
         lock.lock();
         try {
@@ -194,7 +196,6 @@ public class MGeneralRepository implements IGeneralRepository {
      *
      * @param team the team
      */
-    @Override
     public void callContestants(int team) {
         lock.lock();
         try {
@@ -217,7 +218,6 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param team the team
      * @param id   the contestant id
      */
-    @Override
     public void followCoachAdvice(int team, int id) {
         lock.lock();
         try {
@@ -241,7 +241,6 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param team the team
      * @param id   the id contestant
      */
-    @Override
     public void getReady(int team, int id) {
         lock.lock();
         try {
@@ -263,7 +262,6 @@ public class MGeneralRepository implements IGeneralRepository {
      *
      * @param team the team
      */
-    @Override
     public void informReferee(int team) {
         lock.lock();
         try {
@@ -281,7 +279,6 @@ public class MGeneralRepository implements IGeneralRepository {
     /**
      * Set the new state of the referee when he starts the trial.
      */
-    @Override
     public void startTrial() {
         lock.lock();
         try {
@@ -304,7 +301,6 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param contestant the contestant
      * @param reduce     if the strength of the contestant should be reduced
      */
-    @Override
     public void pullTheRope(int team, int contestant, boolean reduce) {
         lock.lock();
         try {
@@ -328,7 +324,6 @@ public class MGeneralRepository implements IGeneralRepository {
     /**
      * Set the new state of the contestant when he's done.
      */
-    @Override
     public void amDone() {
         lock.lock();
         try {
@@ -344,7 +339,6 @@ public class MGeneralRepository implements IGeneralRepository {
      *
      * @param p the rope position
      */
-    @Override
     public void assertTrialDecision(int p) {
         lock.lock();
         try {
@@ -361,7 +355,6 @@ public class MGeneralRepository implements IGeneralRepository {
      *
      * @param team the team
      */
-    @Override
     public void reviewNotes(int team) {
         lock.lock();
         try {
@@ -381,7 +374,6 @@ public class MGeneralRepository implements IGeneralRepository {
     /**
      * Set the new state of the referee when he announces a new game.
      */
-    @Override
     public void announceNewGame() {
         lock.lock();
         try {
@@ -403,7 +395,6 @@ public class MGeneralRepository implements IGeneralRepository {
     /**
      * Set the new state of the referee when he calls a trial.
      */
-    @Override
     public void callTrial() {
         lock.lock();
         try {
@@ -426,7 +417,6 @@ public class MGeneralRepository implements IGeneralRepository {
      * @param team     the team
      * @param knockout the knockout flag
      */
-    @Override
     public void declareGameWinner(int team, boolean knockout) {
         lock.lock();
         try {
@@ -459,7 +449,6 @@ public class MGeneralRepository implements IGeneralRepository {
      *
      * @param team the team
      */
-    @Override
     public void declareMatchWinner(int team) {
         lock.lock();
         try {
@@ -479,6 +468,18 @@ public class MGeneralRepository implements IGeneralRepository {
             fileWriter.close();
 
             matchEnd = true;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    /**
+     * Operation server shutdown.
+     */
+    public void shutdown() {
+        lock.lock();
+        try {
+            ServerSleepingGeneralRepos.waitConnection = false;
         } finally {
             lock.unlock();
         }

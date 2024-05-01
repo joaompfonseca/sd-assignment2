@@ -53,6 +53,9 @@ public class RefereeSiteInterface {
                     throw new MessageException("Invalid team id!", inMessage);
                 break;
             }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                break;
+            }
             default -> throw new MessageException("Invalid message type!", inMessage);
         }
 
@@ -85,6 +88,11 @@ public class RefereeSiteInterface {
                 MessageCoachReviewNotesRequest tempMessage = (MessageCoachReviewNotesRequest) inMessage;
                 boolean reviewNotes = refereeSite.reviewNotes(tempMessage.getTeam());
                 outMessage = new MessageCoachReviewNotesReply(reviewNotes);
+                break;
+            }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                refereeSite.shutdown();
+                outMessage = new MessageShutdownReply();
                 break;
             }
         }

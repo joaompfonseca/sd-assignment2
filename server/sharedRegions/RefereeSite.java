@@ -1,6 +1,7 @@
 package server.sharedRegions;
 
 import client.stubs.generalrepository.GeneralReposStub;
+import server.main.ServerSleepingRefereeSite;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -161,6 +162,19 @@ public class RefereeSite {
             refereeCommand.signalAll(); // alerts coaches
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    /**
+     * Operation server shutdown.
+     */
+    public void shutdown() {
+        lock.lock();
+        try {
+            reposStub.shutdown();
+            ServerSleepingRefereeSite.waitConnection = false;
         } finally {
             lock.unlock();
         }

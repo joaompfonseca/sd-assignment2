@@ -1,13 +1,13 @@
-package generalrepository;
+package client.stubs.generalrepository;
 
 /**
- * Interface for the playground in the general repository.
+ * Interface for the playground in the general repository stub.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralRepository_Playground {
+public interface IGeneralReposStub_Playground {
     /**
      * Set the new state of the contestant when he is getting ready.
      *

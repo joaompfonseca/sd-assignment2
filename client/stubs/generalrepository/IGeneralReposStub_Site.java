@@ -1,13 +1,13 @@
-package generalrepository;
+package client.stubs.generalrepository;
 
 /**
- * Interface for the referee site in the general repository.
+ * Interface for the site in the general repository stub.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralRepository_Site {
+public interface IGeneralReposStub_Site {
     /**
      * Set the new state of the coach when he waits for the referee.
      *

@@ -70,6 +70,10 @@ public class ContestantsBenchInterface {
                     throw new MessageException("Invalid team id!", inMessage);
                 break;
             }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                break;
+            }
+            default -> throw new MessageException("Invalid message type!", inMessage);
         }
 
         /* processing */
@@ -103,6 +107,11 @@ public class ContestantsBenchInterface {
                 MessageContestantFollowCoachAdviceRequest tempMessage = (MessageContestantFollowCoachAdviceRequest) inMessage;
                 boolean result = contestantsBench.followCoachAdvice(tempMessage.getContestant(), tempMessage.getTeam());
                 outMessage = new MessageContestantFollowCoachAdviceReply(result);
+                break;
+            }
+            case MessageType.SHUTDOWN_REQUEST -> {
+                contestantsBench.shutdown();
+                outMessage = new MessageShutdownReply();
                 break;
             }
         }

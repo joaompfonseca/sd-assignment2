@@ -1,13 +1,13 @@
-package generalrepository;
+package client.stubs.generalrepository;
 
 /**
- * Interface for the bench in the general repository.
+ * Interface for the bench in the general repository stub.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralRepository_Bench {
+public interface IGeneralReposStub_Bench {
     /**
      * Set the new state of the contestant when he seats down.
      *
