@@ -1,4 +1,4 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 /**
  * Possible states of the referee.
@@ -7,7 +7,7 @@ package server.sharedRegions;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public enum EGeneralRepos_Referee {
+public enum EGeneralRepository_Referee {
     /**
      * Start of the match state.
      */
@@ -43,7 +43,7 @@ public enum EGeneralRepos_Referee {
      *
      * @param label the label of the state
      */
-    EGeneralRepos_Referee(String label) {
+    EGeneralRepository_Referee(String label) {
         this.label = label;
     }
 }

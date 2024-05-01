@@ -3,7 +3,7 @@ package server.entities;
 import communication.ServerCom;
 import communication.message.Message;
 import communication.message.MessageException;
-import server.sharedRegions.PlaygroundInterface;
+import server.sharedregions.PlaygroundInterface;
 
 public class PlaygroundClientProxy extends Thread {
 

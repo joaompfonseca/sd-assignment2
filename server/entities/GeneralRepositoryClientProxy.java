@@ -3,9 +3,9 @@ package server.entities;
 import communication.ServerCom;
 import communication.message.Message;
 import communication.message.MessageException;
-import server.sharedRegions.GeneralReposInterface;
+import server.sharedregions.GeneralRepositoryInterface;
 
-public class GeneralReposClientProxy extends Thread {
+public class GeneralRepositoryClientProxy extends Thread {
 
     /**
      *  Number of instantiayed threads.
@@ -20,18 +20,18 @@ public class GeneralReposClientProxy extends Thread {
     /**
      *  General Repository Interface.
      */
-    private GeneralReposInterface generalReposInterface;
+    private GeneralRepositoryInterface generalRepositoryInterface;
 
     /**
      *  General Repository Client Proxy instantiation.
      *
      *    @param sconi communication channel
-     *    @param generalReposInterface General Repository Interface
+     *    @param generalRepositoryInterface General Repository Interface
      */
-    public GeneralReposClientProxy(ServerCom sconi, GeneralReposInterface generalReposInterface) {
+    public GeneralRepositoryClientProxy(ServerCom sconi, GeneralRepositoryInterface generalRepositoryInterface) {
         super("GeneralReposProxy_" + getProxyId());
         this.sconi = sconi;
-        this.generalReposInterface = generalReposInterface;
+        this.generalRepositoryInterface = generalRepositoryInterface;
     }
 
     /**
@@ -44,7 +44,7 @@ public class GeneralReposClientProxy extends Thread {
         int proxyId;                                                   // instantiation identifier
 
         try {
-            cl = Class.forName ("server.entities.GeneralReposClientProxy");
+            cl = Class.forName ("server.entities.GeneralRepositoryClientProxy");
         } catch (ClassNotFoundException e) {
             System.out.println("Data type GeneralReposClientProxy was not found!");
             e.printStackTrace ();
@@ -67,7 +67,7 @@ public class GeneralReposClientProxy extends Thread {
 
         inMessage = (Message) sconi.readObject();                     // reading the service request
         try {
-            outMessage = generalReposInterface.processAndReply(inMessage);    // processing the request
+            outMessage = generalRepositoryInterface.processAndReply(inMessage);    // processing the request
         } catch (MessageException e) {
             e.printStackTrace();
             System.exit(1);

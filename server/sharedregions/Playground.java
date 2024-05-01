@@ -1,7 +1,7 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 import client.stubs.generalrepository.GeneralReposStub;
-import server.main.ServerSleepingPlayground;
+import server.main.PlaygroundServer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -281,7 +281,7 @@ public class Playground {
         try {
             trialDecided.signalAll();
             reposStub.shutdown();
-            ServerSleepingPlayground.waitConnection = false;
+            PlaygroundServer.waitConnection = false;
         } finally {
             lock.unlock();
         }

@@ -2,34 +2,24 @@ package server.main;
 
 import client.stubs.generalrepository.GeneralReposStub;
 import communication.ServerCom;
-import server.sharedRegions.ContestantsBench;
-import server.sharedRegions.ContestantsBenchInterface;
-import server.entities.ContestantsBenchProxy;
+import server.sharedregions.RefereeSite;
+import server.sharedregions.RefereeSiteInterface;
+import server.entities.RefereeSiteClientProxy;
 
 import java.net.SocketTimeoutException;
 
 /**
- * Server that encapsulates the contestants bench.
+ * Server that encapsulates the referee site.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public class ServerSleepingContestantsBench {
+public class RefereeSiteServer {
     /**
      *  Flag signaling the service is active.
      */
     public static boolean waitConnection;
-
-    /**
-     * Number of contestants per team.
-     */
-    private final static int N_CONTESTANTS_PER_TEAM = 5;
-
-    /**
-     * Maximum strength of the contestants.
-     */
-    private final static int MAX_STRENGTH = 5;
 
     /**
      *  Main method.
@@ -40,8 +30,8 @@ public class ServerSleepingContestantsBench {
      *        args[2] - port number where the server for the general repository is listening to service requests
      */
     public static void main (String[] args){
-        ContestantsBench cBench;                    // contestants bench (service to be rendered)
-        ContestantsBenchInterface cBenchInter;      // interface to the contestants bench
+        RefereeSite rSite;                          // referee site (service to be rendered)
+        RefereeSiteInterface rSiteInter;            // interface to the referee site
         GeneralReposStub reposStub;                 // stub to the general repository
         ServerCom scon, sconi;                      // communication channels
         int portNumb = -1;                          // port number for listening to service requests
@@ -76,28 +66,28 @@ public class ServerSleepingContestantsBench {
 
         /* service is established */
 
-        reposStub = new GeneralReposStub(reposServerName, reposPortNumb);  // stub to the general repository
-        cBench = new ContestantsBench(N_CONTESTANTS_PER_TEAM, MAX_STRENGTH, reposStub);                          // contestants bench
-        cBenchInter = new ContestantsBenchInterface(cBench);               // interface to the contestants bench
-        scon = new ServerCom(portNumb);                                    // communication channel
-        scon.start();                                                      // communication channel is established
-        System.out.println("Contestants Bench service has started!");
+        reposStub = new GeneralReposStub(reposServerName, reposPortNumb); // TODO: CHANGE GENEREAL REPOS STUB
+        rSite = new RefereeSite(reposStub);                                 // referee site is instantiated
+        rSiteInter = new RefereeSiteInterface(rSite);                       // referee site interface is instantiated
+        scon = new ServerCom(portNumb);                                     // communication channel is established
+        scon.start();
+        System.out.println("Referee Site service has started!");
         System.out.println("Server listening on port " + portNumb);
 
         /* service requests processing */
 
-        ContestantsBenchProxy cBenchProxy;
+        RefereeSiteClientProxy rSiteProxy;                    // service provider agent
 
         waitConnection = true;
-        while (waitConnection){
+        while (waitConnection) {
             try {
-                sconi = scon.accept();                                          // accept connection
-                cBenchProxy = new ContestantsBenchProxy(sconi, cBenchInter);    // service provider agent
-                cBenchProxy.start();
+                sconi = scon.accept();                                  // listening channel accepts communication
+                rSiteProxy = new RefereeSiteClientProxy(sconi, rSiteInter);   // service provider agent is instantiated
+                rSiteProxy.start();                                     // service provider agent starts execution
             } catch (SocketTimeoutException e) {
             }
         }
         scon.end();
-        System.out.println("Contestants Bench service has ended!");
+        System.out.println("Referee Site service has ended!");
     }
 }

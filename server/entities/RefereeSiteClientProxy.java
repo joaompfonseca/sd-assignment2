@@ -3,7 +3,7 @@ package server.entities;
 import communication.ServerCom;
 import communication.message.Message;
 import communication.message.MessageException;
-import server.sharedRegions.RefereeSiteInterface;
+import server.sharedregions.RefereeSiteInterface;
 
 public class RefereeSiteClientProxy extends Thread {
     /**

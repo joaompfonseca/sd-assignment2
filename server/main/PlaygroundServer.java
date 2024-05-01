@@ -1,10 +1,11 @@
 package server.main;
 
 import client.stubs.generalrepository.GeneralReposStub;
-import server.sharedRegions.Playground;
+import server.sharedregions.Playground;
 import communication.ServerCom;
-import server.sharedRegions.PlaygroundInterface;
+import server.sharedregions.PlaygroundInterface;
 import server.entities.PlaygroundClientProxy;
+import configuration.Config;
 
 import java.net.SocketTimeoutException;
 
@@ -15,13 +16,7 @@ import java.net.SocketTimeoutException;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public class ServerSleepingPlayground {
-
-    /**
-     *  Number of contestants per trial.
-     */
-    private final static int N_CONTESTANTS_PER_TRIAL = 3;
-
+public class PlaygroundServer {
     /**
      *  Flag signaling the service is active.
      */
@@ -75,7 +70,7 @@ public class ServerSleepingPlayground {
         scon = new ServerCom(portNumb);
         scon.start();
         reposStub = new GeneralReposStub(reposServerName, reposPortNumb);
-        playground = new Playground(N_CONTESTANTS_PER_TRIAL, reposStub);
+        playground = new Playground(Config.N_CONTESTANTS_PER_TRIAL, reposStub);
         playgroundInter = new PlaygroundInterface(playground);
         System.out.println("Playground service has started!");
         System.out.println("Server is listening.");

@@ -3,7 +3,7 @@ package server.entities;
 import communication.ServerCom;
 import communication.message.Message;
 import communication.message.MessageException;
-import server.sharedRegions.ContestantsBenchInterface;
+import server.sharedregions.ContestantsBenchInterface;
 
 public class ContestantsBenchProxy extends Thread {
     /**

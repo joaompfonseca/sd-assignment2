@@ -1,4 +1,4 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 /**
  * Possible states of the contestant.
@@ -7,7 +7,7 @@ package server.sharedRegions;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public enum EGeneralRepos_Contestant {
+public enum EGeneralRepository_Contestant {
     /**
      * Seat at the bench state.
      */
@@ -31,7 +31,7 @@ public enum EGeneralRepos_Contestant {
      *
      * @param label the label of the state
      */
-    EGeneralRepos_Contestant(String label) {
+    EGeneralRepository_Contestant(String label) {
         this.label = label;
     }
 }

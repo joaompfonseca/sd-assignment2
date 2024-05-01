@@ -47,7 +47,7 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         com = new ClientCom(host, port);
         while (!com.open()) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }

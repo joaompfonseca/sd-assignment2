@@ -1,7 +1,7 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 import client.stubs.generalrepository.GeneralReposStub;
-import server.main.ServerSleepingRefereeSite;
+import server.main.RefereeSiteServer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -174,7 +174,7 @@ public class RefereeSite {
         lock.lock();
         try {
             reposStub.shutdown();
-            ServerSleepingRefereeSite.waitConnection = false;
+            RefereeSiteServer.waitConnection = false;
         } finally {
             lock.unlock();
         }

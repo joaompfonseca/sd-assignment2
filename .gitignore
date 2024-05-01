@@ -1,2 +1,5 @@
+*.iml
+.idea/
 bin/
+dist/
 out/

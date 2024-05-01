@@ -1,36 +1,31 @@
 package server.main;
 
 import communication.ServerCom;
-import server.entities.GeneralReposClientProxy;
-import server.sharedRegions.GeneralRepos;
-import server.sharedRegions.GeneralReposInterface;
+import server.entities.GeneralRepositoryClientProxy;
+import server.sharedregions.GeneralRepository;
+import server.sharedregions.GeneralRepositoryInterface;
+import configuration.Config;
 
 import java.net.SocketTimeoutException;
 
 /**
- *   Server side of the General Repository of Information.
+ * Server side of the General Repository of Information.
  */
-public class ServerSleepingGeneralRepos {
-
+public class GeneralRepositoryServer {
     /**
-     *  Number of contestants per team.
-     */
-    private final static int N_CONTESTANTS_PER_TEAM = 5;
-
-    /**
-     *  Flag signaling the service is active.
+     * Flag signaling the service is active.
      */
     public static boolean waitConnection;
 
     /**
-     *  Main method.
+     * Main method.
      *
-     *    @param args runtime arguments
-     *        args[0] - port nunber for listening to service requests
+     * @param args runtime arguments
+     *             args[0] - port nunber for listening to service requests
      */
-    public static void main (String [] args) {
-        GeneralRepos repos;                                            // general repository of information (service to be rendered)
-        GeneralReposInterface reposInter;                              // interface to the general repository of information
+    public static void main(String[] args) {
+        GeneralRepository repos;                                            // general repository of information (service to be rendered)
+        GeneralRepositoryInterface reposInter;                              // interface to the general repository of information
         ServerCom scon, sconi;                                         // communication channels
         int portNumb = -1;                                             // port number for listening to service requests
 
@@ -51,8 +46,8 @@ public class ServerSleepingGeneralRepos {
 
         /* service is established */
 
-        repos = new GeneralRepos(N_CONTESTANTS_PER_TEAM,"logs");                                   // service is instantiated
-        reposInter = new GeneralReposInterface(repos);                // interface to the service is instantiated
+        repos = new GeneralRepository(Config.N_CONTESTANTS_PER_TEAM, Config.LOGS_FOLDER);                                   // service is instantiated
+        reposInter = new GeneralRepositoryInterface(repos);                // interface to the service is instantiated
         scon = new ServerCom(portNumb);                               // listening channel at the public port is established
         scon.start();
         System.out.println("Service is established!");
@@ -60,13 +55,13 @@ public class ServerSleepingGeneralRepos {
 
         /* service requests processing */
 
-        GeneralReposClientProxy cliProxy;                                  // service provider agent
+        GeneralRepositoryClientProxy cliProxy;                                  // service provider agent
 
         waitConnection = true;
         while (waitConnection) {
-            try{
+            try {
                 sconi = scon.accept();                                      // enter listening procedure
-                cliProxy = new GeneralReposClientProxy(sconi, reposInter);  // start a service provider agent to address
+                cliProxy = new GeneralRepositoryClientProxy(sconi, reposInter);  // start a service provider agent to address
                 cliProxy.start();                                           // the request of service
             } catch (SocketTimeoutException e) {
             }

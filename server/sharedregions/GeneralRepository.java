@@ -1,7 +1,6 @@
-package server.sharedRegions;
+package server.sharedregions;
 
-import server.main.ServerSleepingContestantsBench;
-import server.main.ServerSleepingGeneralRepos;
+import server.main.GeneralRepositoryServer;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -10,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static server.sharedRegions.EGeneralRepos_Coach.*;
-import static server.sharedRegions.EGeneralRepos_Contestant.*;
-import static server.sharedRegions.EGeneralRepos_Referee.*;
+import static server.sharedregions.EGeneralRepository_Coach.*;
+import static server.sharedregions.EGeneralRepository_Contestant.*;
+import static server.sharedregions.EGeneralRepository_Referee.*;
 
 /**
  *  General Repository of Information.
@@ -21,7 +20,7 @@ import static server.sharedRegions.EGeneralRepos_Referee.*;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public class GeneralRepos {
+public class GeneralRepository {
     /**
      * Representation of a contestant.
      */
@@ -114,7 +113,7 @@ public class GeneralRepos {
      * @param nContestants the number of contestants
      * @param logsFolder   the logs folder
      */
-    public GeneralRepos(int nContestants, String logsFolder) {
+    public GeneralRepository(int nContestants, String logsFolder) {
         this.refereeStatus = START_OF_THE_MATCH.label;
         this.coachesTeam1Status = null;
         this.coachesTeam2Status = null;
@@ -479,7 +478,7 @@ public class GeneralRepos {
     public void shutdown() {
         lock.lock();
         try {
-            ServerSleepingGeneralRepos.waitConnection = false;
+            GeneralRepositoryServer.waitConnection = false;
         } finally {
             lock.unlock();
         }

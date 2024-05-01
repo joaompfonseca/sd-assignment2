@@ -1,7 +1,7 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 import client.stubs.generalrepository.GeneralReposStub;
-import server.main.ServerSleepingContestantsBench;
+import server.main.ContestantsBenchServer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -215,7 +215,7 @@ public class ContestantsBench {
         lock.lock();
         try {
             reposStub.shutdown();
-            ServerSleepingContestantsBench.waitConnection = false;
+            ContestantsBenchServer.waitConnection = false;
         } finally {
             lock.unlock();
         }

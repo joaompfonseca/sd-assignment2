@@ -1,4 +1,4 @@
-package server.sharedRegions;
+package server.sharedregions;
 
 /**
  * Possible states of the coach.
@@ -7,7 +7,7 @@ package server.sharedRegions;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public enum EGeneralRepos_Coach {
+public enum EGeneralRepository_Coach {
     /**
      * Wait for referee command state.
      */
@@ -31,7 +31,7 @@ public enum EGeneralRepos_Coach {
      *
      * @param label the label of the state
      */
-    EGeneralRepos_Coach(String label) {
+    EGeneralRepository_Coach(String label) {
         this.label = label;
     }
 }
