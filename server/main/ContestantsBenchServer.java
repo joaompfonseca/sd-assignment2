@@ -32,13 +32,13 @@ public class ContestantsBenchServer {
      *             args[2] - port number where the server for the general repository is listening to service requests
      */
     public static void main(String[] args) {
-        ContestantsBench cBench;                    // contestants bench (service to be rendered)
-        ContestantsBenchInterface cBenchInter;      // interface to the contestants bench
-        GeneralRepositoryStub reposStub;                 // stub to the general repository
-        ServerCom scon, sconi;                      // communication channels
-        int portNumb = -1;                          // port number for listening to service requests
-        String reposServerName;                     // name of the platform where is located the server for the general repository
-        int reposPortNumb = -1;                     // port number where the server for the general repository is listening to service requests
+        ContestantsBench cBench;
+        ContestantsBenchInterface cBenchInter;
+        GeneralRepositoryStub reposStub;
+        ServerCom scon, sconi;
+        int portNumb = -1;
+        String reposServerName;
+        int reposPortNumb = -1;
 
         if (args.length != 3) {
             System.err.println("Wrong number of parameters!");
@@ -68,11 +68,11 @@ public class ContestantsBenchServer {
 
         /* service is established */
 
-        reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb);  // stub to the general repository
-        cBench = new ContestantsBench(Config.N_CONTESTANTS_PER_TEAM, Config.MAX_STRENGTH, reposStub); // contestants bench
-        cBenchInter = new ContestantsBenchInterface(cBench);               // interface to the contestants bench
-        scon = new ServerCom(portNumb);                                    // communication channel
-        scon.start();                                                      // communication channel is established
+        reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb);
+        cBench = new ContestantsBench(Config.N_CONTESTANTS_PER_TEAM, Config.MAX_STRENGTH, reposStub);
+        cBenchInter = new ContestantsBenchInterface(cBench);
+        scon = new ServerCom(portNumb);
+        scon.start();
         System.out.println("Contestants Bench service has started!");
         System.out.println("Server listening on port " + portNumb);
 
@@ -83,10 +83,11 @@ public class ContestantsBenchServer {
         waitConnection = true;
         while (waitConnection) {
             try {
-                sconi = scon.accept();                                          // accept connection
-                cBenchProxy = new ContestantsBenchClientProxy(sconi, cBenchInter);    // service provider agent
+                sconi = scon.accept();
+                cBenchProxy = new ContestantsBenchClientProxy(sconi, cBenchInter);
                 cBenchProxy.start();
             } catch (SocketTimeoutException e) {
+                e.printStackTrace();
             }
         }
         scon.end();

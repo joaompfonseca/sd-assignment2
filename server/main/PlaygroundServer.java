@@ -18,26 +18,26 @@ import java.net.SocketTimeoutException;
  */
 public class PlaygroundServer {
     /**
-     *  Flag signaling the service is active.
+     * Flag signaling the service is active.
      */
     public static boolean waitConnection;
 
     /**
-     *  Main method.
+     * Main method.
      *
-     *    @param args runtime arguments
-     *        args[0] - port number for listening to service requests
-     *        args[1] - name of the platform where is located the server for the general repository
-     *        args[2] - port number where the server for the general repository is listening to service requests
+     * @param args runtime arguments
+     *             args[0] - port number for listening to service requests
+     *             args[1] - name of the platform where is located the server for the general repository
+     *             args[2] - port number where the server for the general repository is listening to service requests
      */
     public static void main(String[] args) {
-        Playground playground;                          // playground (service to be rendered)
-        PlaygroundInterface playgroundInter;            // interface to the playground
-        GeneralRepositoryStub reposStub;                     // stub to the general repository
-        ServerCom scon, sconi;                          // communication channels
-        int portNumb = -1;                              // port number for listening to service requests
-        String reposServerName;                         // name of the platform where is located the server for the general repository
-        int reposPortNumb = -1;                         // port number where the server for the general repository is listening to service requests
+        Playground playground;
+        PlaygroundInterface playgroundInter;
+        GeneralRepositoryStub reposStub;
+        ServerCom scon, sconi;
+        int portNumb = -1;
+        String reposServerName;
+        int reposPortNumb = -1;
 
         if (args.length != 3) {
             System.err.println("Wrong number of parameters!");
@@ -84,6 +84,7 @@ public class PlaygroundServer {
                 PlaygroundClientProxy cliProxy = new PlaygroundClientProxy(sconi, playgroundInter);
                 cliProxy.start();
             } catch (SocketTimeoutException e) {
+                e.printStackTrace();
             }
         }
         scon.end();

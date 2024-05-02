@@ -15,25 +15,25 @@ import server.sharedregions.GeneralRepositoryInterface;
 public class GeneralRepositoryClientProxy extends Thread {
 
     /**
-     *  Number of instantiayed threads.
+     * Number of instantiayed threads.
      */
     private static int nProxy = 0;
 
     /**
-     *  Communication channel.
+     * Communication channel.
      */
-    private ServerCom sconi;
+    private final ServerCom sconi;
 
     /**
-     *  General Repository Interface.
+     * General Repository Interface.
      */
-    private GeneralRepositoryInterface generalRepositoryInterface;
+    private final GeneralRepositoryInterface generalRepositoryInterface;
 
     /**
-     *  General Repository Client Proxy instantiation.
+     * General Repository Client Proxy instantiation.
      *
-     *    @param sconi communication channel
-     *    @param generalRepositoryInterface General Repository Interface
+     * @param sconi                      communication channel
+     * @param generalRepositoryInterface General Repository Interface
      */
     public GeneralRepositoryClientProxy(ServerCom sconi, GeneralRepositoryInterface generalRepositoryInterface) {
         super("GeneralRepositoryClientProxy_" + getProxyId());
@@ -42,20 +42,19 @@ public class GeneralRepositoryClientProxy extends Thread {
     }
 
     /**
-     *  Generation of the instantiation identifier.
+     * Generation of the instantiation identifier.
      *
-     *     @return instantiation identifier
+     * @return instantiation identifier
      */
-    private static int getProxyId(){
-        Class<?> cl = null;                                            // representation of the BarberShopClientProxy object in JVM
-        int proxyId;                                                   // instantiation identifier
+    private static int getProxyId() {
+        Class<?> cl = null;
+        int proxyId;
 
         try {
-            cl = Class.forName ("server.entities.GeneralRepositoryClientProxy");
+            cl = Class.forName("server.entities.GeneralRepositoryClientProxy");
         } catch (ClassNotFoundException e) {
-            System.out.println("Data type GeneralReposClientProxy was not found!");
-            e.printStackTrace ();
-            System.exit (1);
+            System.out.println("Data type GeneralRepositoryClientProxy was not found!");
+            System.exit(1);
         }
         synchronized (cl) {
             proxyId = nProxy;
@@ -65,21 +64,21 @@ public class GeneralRepositoryClientProxy extends Thread {
     }
 
     /**
-     *  Life cycle of the service provider.
+     * Life cycle of the service provider.
      */
     @Override
     public void run() {
-        Message inMessage = null,                                      // service request
-                outMessage = null;                                     // service reply
+        Message inMessage = null,
+                outMessage = null;
 
-        inMessage = (Message) sconi.readObject();                     // reading the service request
+        inMessage = (Message) sconi.readObject();
         try {
-            outMessage = generalRepositoryInterface.processAndReply(inMessage);    // processing the request
+            outMessage = generalRepositoryInterface.processAndReply(inMessage);
         } catch (MessageException e) {
             e.printStackTrace();
             System.exit(1);
         }
-        sconi.writeObject(outMessage);                                 // sending the service reply
-        sconi.close();                                                // closing the communication channel
+        sconi.writeObject(outMessage);
+        sconi.close();
     }
 }

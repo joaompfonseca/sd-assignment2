@@ -72,7 +72,7 @@ public class TContestant extends Thread {
             playground.getReady(team, contestant);
             try {
                 Thread.sleep((long) (Math.random() * maxSleepMs));
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 break;
             }

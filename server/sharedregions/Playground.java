@@ -87,7 +87,7 @@ public class Playground {
      */
     private final GeneralRepositoryStub reposStub;
     /**
-     *   Number of entity groups requesting the shutdown.
+     * Number of entity groups requesting the shutdown.
      */
     private int nEntities;
 
@@ -95,7 +95,7 @@ public class Playground {
      * Instantiation of the playground monitor.
      *
      * @param contestantsPerTrial the number of contestants per trial
-     * @param reposStub the general repository
+     * @param reposStub           the general repository
      */
     public Playground(int contestantsPerTrial, GeneralRepositoryStub reposStub) {
         this.contestantsPerTrial = contestantsPerTrial;

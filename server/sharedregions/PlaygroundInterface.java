@@ -29,8 +29,7 @@ public class PlaygroundInterface {
      * @return the reply
      */
     public Message processAndReply(Message inMessage) throws MessageException {
-
-        Message outMessage = null;                  // outgoing message
+        Message outMessage = null;
 
         /* validation of the incoming message */
 

@@ -76,7 +76,7 @@ public class ContestantsBench {
     private final GeneralRepositoryStub reposStub;
 
     /**
-     *   Number of entity groups requesting the shutdown.
+     * Number of entity groups requesting the shutdown.
      */
     private int nEntities;
 
@@ -111,7 +111,7 @@ public class ContestantsBench {
             while (teamData.countSeatedDown < contestantsPerTeam) {
                 teamData.seatedDown.await(); // releases the lock and waits
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             lock.unlock();

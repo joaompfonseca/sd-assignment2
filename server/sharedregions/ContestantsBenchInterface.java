@@ -26,12 +26,11 @@ public class ContestantsBenchInterface {
      * Process and reply a message.
      *
      * @param inMessage the message to process
-     * @throws MessageException if the message is not valid
      * @return the reply
+     * @throws MessageException if the message is not valid
      */
     public Message processAndReply(Message inMessage) throws MessageException {
-
-        Message outMessage = null;                  // outgoing message
+        Message outMessage = null;
 
         /* validation of the incoming message */
 

@@ -14,25 +14,25 @@ import server.sharedregions.ContestantsBenchInterface;
  */
 public class ContestantsBenchClientProxy extends Thread {
     /**
-     *  Number of instantiayed threads.
+     * Number of instantiated threads.
      */
     private static int nProxy = 0;
 
     /**
-     *  Communication channel.
+     * Communication channel.
      */
-    private ServerCom sconi;
+    private final ServerCom sconi;
 
     /**
-     *  Contestants Bench Interface.
+     * Contestants Bench Interface.
      */
-    private ContestantsBenchInterface contestantsBenchInterface;
+    private final ContestantsBenchInterface contestantsBenchInterface;
 
     /**
-     *  Contestants Bench Client Proxy instantiation.
+     * Contestants Bench Client Proxy instantiation.
      *
-     *    @param sconi communication channel
-     *    @param contestantsBenchInterface Contestants Bench Interface
+     * @param sconi                     communication channel
+     * @param contestantsBenchInterface Contestants Bench Interface
      */
     public ContestantsBenchClientProxy(ServerCom sconi, ContestantsBenchInterface contestantsBenchInterface) {
         super("ContestantsBenchClientProxy_" + getProxyId());
@@ -41,22 +41,19 @@ public class ContestantsBenchClientProxy extends Thread {
     }
 
     /**
-     *  Generation of the instantiation identifier.
+     * Generation of the instantiation identifier.
      *
-     *     @return instantiation identifier
+     * @return instantiation identifier
      */
-    private static int getProxyId ()
-    {
-        Class<?> cl = null;                                            // representation of the BarberShopClientProxy object in JVM
-        int proxyId;                                                   // instantiation identifier
+    private static int getProxyId() {
+        Class<?> cl = null;
+        int proxyId;
 
         try {
-            cl = Class.forName ("server.entities.ContestantsBenchClientProxy");
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("Data type ContestantsBenchProxy was not found!");
-            e.printStackTrace ();
-            System.exit (1);
+            cl = Class.forName("server.entities.ContestantsBenchClientProxy");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Data type ContestantsBenchClientProxy was not found!");
+            System.exit(1);
         }
         synchronized (cl) {
             proxyId = nProxy;
@@ -66,22 +63,22 @@ public class ContestantsBenchClientProxy extends Thread {
     }
 
     /**
-     *  Life cycle of the service provider.
+     * Life cycle of the service provider.
      */
     @Override
     public void run() {
-        Message inMessage = null,                                      // request message
-               outMessage = null;                                     // response message
+        Message inMessage = null,
+                outMessage = null;
 
-        inMessage = (Message) sconi.readObject();                               // reading the request message
+        inMessage = (Message) sconi.readObject();
         try {
-            outMessage = contestantsBenchInterface.processAndReply(inMessage);    // processing
+            outMessage = contestantsBenchInterface.processAndReply(inMessage);
         } catch (MessageException e) {
             System.out.println("Thread " + getName() + ": " + e.getMessage() + "!");
             System.out.println(e.getMessageVal().toString());
             System.exit(1);
         }
-        sconi.writeObject(outMessage);                                // sending the reply message
-        sconi.close();                                                // closing the communication channel
+        sconi.writeObject(outMessage);
+        sconi.close();
     }
 }

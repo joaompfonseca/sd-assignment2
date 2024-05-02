@@ -14,25 +14,25 @@ import server.sharedregions.RefereeSiteInterface;
  */
 public class RefereeSiteClientProxy extends Thread {
     /**
-     *  Number of instantiayed threads.
+     * Number of instantiated threads.
      */
     private static int nProxy = 0;
 
     /**
-     *  Communication channel.
+     * Communication channel.
      */
-    private ServerCom sconi;
+    private final ServerCom sconi;
 
     /**
-     *  Referee Site Interface.
+     * Referee Site Interface.
      */
-    private RefereeSiteInterface refereeSiteInterface;
+    private final RefereeSiteInterface refereeSiteInterface;
 
     /**
-     *  Referee Site Client Proxy instantiation.
+     * Referee Site Client Proxy instantiation.
      *
-     *    @param sconi communication channel
-     *    @param refereeSiteInterface Referee Site Interface
+     * @param sconi                communication channel
+     * @param refereeSiteInterface Referee Site Interface
      */
     public RefereeSiteClientProxy(ServerCom sconi, RefereeSiteInterface refereeSiteInterface) {
         super("RefereeSiteClientProxy_" + getProxyId());
@@ -41,22 +41,19 @@ public class RefereeSiteClientProxy extends Thread {
     }
 
     /**
-     *  Generation of the instantiation identifier.
+     * Generation of the instantiation identifier.
      *
-     *     @return instantiation identifier
+     * @return instantiation identifier
      */
-    private static int getProxyId ()
-    {
-        Class<?> cl = null;                                            // representation of the BarberShopClientProxy object in JVM
-        int proxyId;                                                   // instantiation identifier
+    private static int getProxyId() {
+        Class<?> cl = null;
+        int proxyId;
 
         try {
-            cl = Class.forName ("server.entities.RefereeSiteClientProxy");
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("Data type BarberShopClientProxy was not found!");
-            e.printStackTrace ();
-            System.exit (1);
+            cl = Class.forName("server.entities.RefereeSiteClientProxy");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Data type RefereeSiteClientProxy was not found!");
+            System.exit(1);
         }
         synchronized (cl) {
             proxyId = nProxy;
@@ -70,20 +67,18 @@ public class RefereeSiteClientProxy extends Thread {
      */
     @Override
     public void run() {
-        Message inMessage = null,                                           // service request
-                outMessage = null;                                          // service reply
+        Message inMessage = null,
+                outMessage = null;
 
-        /* service providing */
-
-        inMessage = (Message) sconi.readObject();                           // get service request
-        try{
-            outMessage = refereeSiteInterface.processAndReply(inMessage);   // process it
+        inMessage = (Message) sconi.readObject();
+        try {
+            outMessage = refereeSiteInterface.processAndReply(inMessage);
         } catch (MessageException e) {
             System.out.println("Thread" + getName() + ": " + e.getMessage() + "!");
             System.out.println(e.getMessageVal().toString());
             System.exit(1);
         }
-        sconi.writeObject(outMessage);                                      // send service reply
-        sconi.close();                                                      // close the communication channel
+        sconi.writeObject(outMessage);
+        sconi.close();
     }
 }

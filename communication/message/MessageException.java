@@ -9,7 +9,7 @@ package communication.message;
 public class MessageException extends Exception
 {
     /**
-     *   Version Id for serialization.
+     *   Version ID for serialization.
      */
 
     private static final long serialVersionUID = 2021L;

@@ -21,13 +21,13 @@ public class GeneralRepositoryServer {
      * Main method.
      *
      * @param args runtime arguments
-     *             args[0] - port nunber for listening to service requests
+     *             args[0] - port number for listening to service requests
      */
     public static void main(String[] args) {
-        GeneralRepository repos;                                            // general repository of information (service to be rendered)
-        GeneralRepositoryInterface reposInter;                              // interface to the general repository of information
-        ServerCom scon, sconi;                                         // communication channels
-        int portNumb = -1;                                             // port number for listening to service requests
+        GeneralRepository repos;
+        GeneralRepositoryInterface reposInter;
+        ServerCom scon, sconi;
+        int portNumb = -1;
 
         if (args.length != 1) {
             System.out.println("Wrong number of parameters!");
@@ -46,27 +46,28 @@ public class GeneralRepositoryServer {
 
         /* service is established */
 
-        repos = new GeneralRepository(Config.N_CONTESTANTS_PER_TEAM, Config.LOGS_FOLDER);                                   // service is instantiated
-        reposInter = new GeneralRepositoryInterface(repos);                // interface to the service is instantiated
-        scon = new ServerCom(portNumb);                               // listening channel at the public port is established
+        repos = new GeneralRepository(Config.N_CONTESTANTS_PER_TEAM, Config.LOGS_FOLDER);
+        reposInter = new GeneralRepositoryInterface(repos);
+        scon = new ServerCom(portNumb);
         scon.start();
         System.out.println("General Repository service has started!");
         System.out.println("Server listening on port " + portNumb);
 
         /* service requests processing */
 
-        GeneralRepositoryClientProxy cliProxy;                                  // service provider agent
+        GeneralRepositoryClientProxy cliProxy;
 
         waitConnection = true;
         while (waitConnection) {
             try {
-                sconi = scon.accept();                                      // enter listening procedure
-                cliProxy = new GeneralRepositoryClientProxy(sconi, reposInter);  // start a service provider agent to address
-                cliProxy.start();                                           // the request of service
+                sconi = scon.accept();
+                cliProxy = new GeneralRepositoryClientProxy(sconi, reposInter);
+                cliProxy.start();
             } catch (SocketTimeoutException e) {
+                e.printStackTrace();
             }
         }
-        scon.end();                                                         // operations termination
+        scon.end();
         System.out.println("General Repository service has ended!");
     }
 

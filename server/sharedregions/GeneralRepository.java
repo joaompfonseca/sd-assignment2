@@ -14,7 +14,7 @@ import static server.sharedregions.EGeneralRepository_Contestant.*;
 import static server.sharedregions.EGeneralRepository_Referee.*;
 
 /**
- *  General Repository of Information.
+ * General Repository of Information.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
@@ -108,7 +108,7 @@ public class GeneralRepository {
     private final PrintWriter fileWriter;
 
     /**
-     *   Number of entity groups requesting the shutdown.
+     * Number of entity groups requesting the shutdown.
      */
     private int nEntities;
 

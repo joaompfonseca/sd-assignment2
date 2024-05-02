@@ -25,12 +25,11 @@ public class RefereeSiteInterface {
      * Process and reply a message.
      *
      * @param inMessage the message to process
-     * @throws MessageException if the message is invalid
      * @return the reply
+     * @throws MessageException if the message is invalid
      */
     public Message processAndReply(Message inMessage) throws MessageException {
-
-        Message outMessage = null;                  // outgoing message
+        Message outMessage = null;
 
         /* validation of the incoming message */
 

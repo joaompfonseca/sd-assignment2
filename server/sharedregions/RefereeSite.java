@@ -47,7 +47,7 @@ public class RefereeSite {
      */
     private final GeneralRepositoryStub reposStub;
     /**
-     *   Number of entity groups requesting the shutdown.
+     * Number of entity groups requesting the shutdown.
      */
     private int nEntities;
 
