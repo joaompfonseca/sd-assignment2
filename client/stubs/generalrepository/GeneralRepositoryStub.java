@@ -11,7 +11,7 @@ import communication.message.*;
  * @author João Fonseca (103154)
  * @version 1.0
 */
-public class GeneralReposStub implements IGeneralReposStub {
+public class GeneralRepositoryStub implements IGeneralRepositoryStub {
     /**
      * Server hostname.
      */
@@ -27,7 +27,7 @@ public class GeneralReposStub implements IGeneralReposStub {
    * @param host hostname of the server
    * @param port port of the server
    */
-  public GeneralReposStub(String host, int port) {
+  public GeneralRepositoryStub(String host, int port) {
       this.host = host;
       this.port = port;
   }

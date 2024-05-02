@@ -19,7 +19,7 @@ public class MessageContestantFollowCoachAdviceReply extends Message {
      * @param keepRunning the keep running flag
      */
     public MessageContestantFollowCoachAdviceReply(boolean keepRunning) {
-        super(MessageType.CONTESTANT_FOLLOW_COACH_ADVICE_REQUEST);
+        super(MessageType.CONTESTANT_FOLLOW_COACH_ADVICE_REPLY);
         this.keepRunning = keepRunning;
     }
 

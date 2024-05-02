@@ -1,6 +1,6 @@
 package server.sharedregions;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import server.main.RefereeSiteServer;
 
 import java.util.concurrent.locks.Condition;
@@ -45,14 +45,14 @@ public class RefereeSite {
     /**
      * The general repository.
      */
-    private final GeneralReposStub reposStub;
+    private final GeneralRepositoryStub reposStub;
 
     /**
      * Instantiation of the referee site.
      *
      * @param reposStub the general repository
      */
-    public RefereeSite(GeneralReposStub reposStub) {
+    public RefereeSite(GeneralRepositoryStub reposStub) {
         this.reposStub = reposStub;
         lock = new ReentrantLock();
         coachesWaited = lock.newCondition();

@@ -7,7 +7,7 @@ package client.stubs.generalrepository;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralReposStub_Bench {
+public interface IGeneralRepositoryStub_Bench {
     /**
      * Set the new state of the contestant when he seats down.
      *

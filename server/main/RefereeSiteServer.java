@@ -1,6 +1,6 @@
 package server.main;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import communication.ServerCom;
 import server.sharedregions.RefereeSite;
 import server.sharedregions.RefereeSiteInterface;
@@ -32,7 +32,7 @@ public class RefereeSiteServer {
     public static void main (String[] args){
         RefereeSite rSite;                          // referee site (service to be rendered)
         RefereeSiteInterface rSiteInter;            // interface to the referee site
-        GeneralReposStub reposStub;                 // stub to the general repository
+        GeneralRepositoryStub reposStub;                 // stub to the general repository
         ServerCom scon, sconi;                      // communication channels
         int portNumb = -1;                          // port number for listening to service requests
         String reposServerName;                     // name of the platform where is located the server for the general repository
@@ -66,7 +66,7 @@ public class RefereeSiteServer {
 
         /* service is established */
 
-        reposStub = new GeneralReposStub(reposServerName, reposPortNumb); // TODO: CHANGE GENEREAL REPOS STUB
+        reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb); // TODO: CHANGE GENEREAL REPOS STUB
         rSite = new RefereeSite(reposStub);                                 // referee site is instantiated
         rSiteInter = new RefereeSiteInterface(rSite);                       // referee site interface is instantiated
         scon = new ServerCom(portNumb);                                     // communication channel is established

@@ -5,7 +5,7 @@ import communication.message.Message;
 import communication.message.MessageException;
 import server.sharedregions.ContestantsBenchInterface;
 
-public class ContestantsBenchProxy extends Thread {
+public class ContestantsBenchClientProxy extends Thread {
     /**
      *  Number of instantiayed threads.
      */
@@ -27,8 +27,8 @@ public class ContestantsBenchProxy extends Thread {
      *    @param sconi communication channel
      *    @param contestantsBenchInterface Contestants Bench Interface
      */
-    public ContestantsBenchProxy(ServerCom sconi, ContestantsBenchInterface contestantsBenchInterface) {
-        super("ContestantsBenchProxy_" + getProxyId());
+    public ContestantsBenchClientProxy(ServerCom sconi, ContestantsBenchInterface contestantsBenchInterface) {
+        super("ContestantsBenchClientProxy_" + getProxyId());
         this.sconi = sconi;
         this.contestantsBenchInterface = contestantsBenchInterface;
     }
@@ -44,7 +44,7 @@ public class ContestantsBenchProxy extends Thread {
         int proxyId;                                                   // instantiation identifier
 
         try {
-            cl = Class.forName ("server.entities.ContestantsBenchProxy");
+            cl = Class.forName ("server.entities.ContestantsBenchClientProxy");
         }
         catch (ClassNotFoundException e) {
             System.out.println("Data type ContestantsBenchProxy was not found!");

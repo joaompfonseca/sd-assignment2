@@ -1,6 +1,6 @@
 package server.sharedregions;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import server.main.PlaygroundServer;
 
 import java.util.concurrent.locks.Condition;
@@ -85,7 +85,7 @@ public class Playground {
     /**
      * The general repository stub.
      */
-    private final GeneralReposStub reposStub;
+    private final GeneralRepositoryStub reposStub;
 
     /**
      * Instantiation of the playground monitor.
@@ -93,7 +93,7 @@ public class Playground {
      * @param contestantsPerTrial the number of contestants per trial
      * @param reposStub the general repository
      */
-    public Playground(int contestantsPerTrial, GeneralReposStub reposStub) {
+    public Playground(int contestantsPerTrial, GeneralRepositoryStub reposStub) {
         this.contestantsPerTrial = contestantsPerTrial;
         lock = new ReentrantLock();
         teamData[0] = new TeamData(lock);

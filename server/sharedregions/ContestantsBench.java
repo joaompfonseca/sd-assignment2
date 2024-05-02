@@ -1,6 +1,6 @@
 package server.sharedregions;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import server.main.ContestantsBenchServer;
 
 import java.util.concurrent.locks.Condition;
@@ -73,7 +73,7 @@ public class ContestantsBench {
     /**
      * The general repository stub.
      */
-    private final GeneralReposStub reposStub;
+    private final GeneralRepositoryStub reposStub;
 
     /**
      * Instantiation of the contestants bench.
@@ -82,7 +82,7 @@ public class ContestantsBench {
      * @param maxStrength        the maximum strength of a contestant
      * @param reposStub          the general repository stub
      */
-    public ContestantsBench(int contestantsPerTeam, int maxStrength, GeneralReposStub reposStub) {
+    public ContestantsBench(int contestantsPerTeam, int maxStrength, GeneralRepositoryStub reposStub) {
         this.contestantsPerTeam = contestantsPerTeam;
         this.maxStrength = maxStrength;
         lock = new ReentrantLock();

@@ -95,7 +95,7 @@ public class ContestantsBenchInterface {
             }
             case MessageType.CONTESTANT_SEAT_DOWN_REQUEST: {
                 MessageContestantSeatDownRequest tempMessage = (MessageContestantSeatDownRequest) inMessage;
-                int result = contestantsBench.seatDown(tempMessage.getContestant(), tempMessage.getTeam(), tempMessage.getStrength());
+                int result = contestantsBench.seatDown(tempMessage.getTeam(), tempMessage.getContestant(), tempMessage.getStrength());
                 outMessage = new MessageContestantSeatDownReply(result);
                 break;
             }
@@ -107,12 +107,12 @@ public class ContestantsBenchInterface {
             }
             case MessageType.CONTESTANT_FOLLOW_COACH_ADVICE_REQUEST: {
                 MessageContestantFollowCoachAdviceRequest tempMessage = (MessageContestantFollowCoachAdviceRequest) inMessage;
-                boolean result = contestantsBench.followCoachAdvice(tempMessage.getContestant(), tempMessage.getTeam());
+                boolean result = contestantsBench.followCoachAdvice(tempMessage.getTeam(), tempMessage.getContestant());
                 outMessage = new MessageContestantFollowCoachAdviceReply(result);
                 break;
             }
             case MessageType.SHUTDOWN_REQUEST: {
-                contestantsBench.shutdown();
+                // contestantsBench.shutdown(); // TODO: FIX SHUTDOWN
                 outMessage = new MessageShutdownReply();
                 break;
             }

@@ -7,7 +7,7 @@ package client.stubs.generalrepository;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralReposStub extends IGeneralReposStub_Bench, IGeneralReposStub_Playground, IGeneralReposStub_Site {
+public interface IGeneralRepositoryStub extends IGeneralRepositoryStub_Bench, IGeneralRepositoryStub_Playground, IGeneralRepositoryStub_Site {
     /**
      * Shutdown the server.
      */

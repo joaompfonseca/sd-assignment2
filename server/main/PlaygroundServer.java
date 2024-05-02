@@ -1,6 +1,6 @@
 package server.main;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import server.sharedregions.Playground;
 import communication.ServerCom;
 import server.sharedregions.PlaygroundInterface;
@@ -33,7 +33,7 @@ public class PlaygroundServer {
     public static void main(String[] args) {
         Playground playground;                          // playground (service to be rendered)
         PlaygroundInterface playgroundInter;            // interface to the playground
-        GeneralReposStub reposStub;                     // stub to the general repository
+        GeneralRepositoryStub reposStub;                     // stub to the general repository
         ServerCom scon, sconi;                          // communication channels
         int portNumb = -1;                              // port number for listening to service requests
         String reposServerName;                         // name of the platform where is located the server for the general repository
@@ -69,11 +69,11 @@ public class PlaygroundServer {
 
         scon = new ServerCom(portNumb);
         scon.start();
-        reposStub = new GeneralReposStub(reposServerName, reposPortNumb);
+        reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb);
         playground = new Playground(Config.N_CONTESTANTS_PER_TRIAL, reposStub);
         playgroundInter = new PlaygroundInterface(playground);
         System.out.println("Playground service has started!");
-        System.out.println("Server is listening.");
+        System.out.println("Server listening on port " + portNumb);
 
         /* service request processing */
 

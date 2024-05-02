@@ -153,6 +153,7 @@ public class GeneralRepositoryInterface {
             }
             case MessageType.REFEREE_START_TRIAL_REQUEST: {
                 generalRepository.startTrial();
+                outMessage = new MessageRefereeStartTrialReply();
                 break;
             }
             case MessageType.REPOS_PULL_THE_ROPE_REQUEST: {
@@ -201,7 +202,7 @@ public class GeneralRepositoryInterface {
                 break;
             }
             case MessageType.SHUTDOWN_REPLY: {
-                generalRepository.shutdown();
+                // generalRepository.shutdown(); // TODO: FIX SHUTDOWN
                 outMessage = new MessageShutdownReply();
                 break;
             }

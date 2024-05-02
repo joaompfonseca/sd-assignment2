@@ -88,7 +88,7 @@ public class PlaygroundInterface {
             }
             case MessageType.CONTESTANT_GET_READY_REQUEST: {
                 MessageContestantGetReadyRequest tempMessage = (MessageContestantGetReadyRequest) inMessage;
-                playground.getReady(tempMessage.getContestant(), tempMessage.getTeam());
+                playground.getReady(tempMessage.getTeam(), tempMessage.getContestant());
                 outMessage = new MessageContestantGetReadyReply();
                 break;
             }
@@ -105,7 +105,7 @@ public class PlaygroundInterface {
             }
             case MessageType.CONTESTANT_PULL_THE_ROPE_REQUEST: {
                 MessageContestantPullTheRopeRequest tempMessage = (MessageContestantPullTheRopeRequest) inMessage;
-                int result = playground.pullTheRope(tempMessage.getContestant(), tempMessage.getTeam(), tempMessage.getStrength());
+                int result = playground.pullTheRope(tempMessage.getTeam(), tempMessage.getContestant(), tempMessage.getStrength());
                 outMessage = new MessageContestantPullTheRopeReply(result);
                 break;
             }
@@ -120,7 +120,7 @@ public class PlaygroundInterface {
                 break;
             }
             case MessageType.SHUTDOWN_REQUEST: {
-                playground.shutdown();
+                // playground.shutdown(); // TODO: FIX SHUTDOWN
                 outMessage = new MessageShutdownReply();
                 break;
             }

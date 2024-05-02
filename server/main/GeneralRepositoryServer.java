@@ -50,8 +50,8 @@ public class GeneralRepositoryServer {
         reposInter = new GeneralRepositoryInterface(repos);                // interface to the service is instantiated
         scon = new ServerCom(portNumb);                               // listening channel at the public port is established
         scon.start();
-        System.out.println("Service is established!");
-        System.out.println("Server is listening for service requests.");
+        System.out.println("General Repository service has started!");
+        System.out.println("Server listening on port " + portNumb);
 
         /* service requests processing */
 

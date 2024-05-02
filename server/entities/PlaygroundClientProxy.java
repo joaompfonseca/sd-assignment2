@@ -29,7 +29,7 @@ public class PlaygroundClientProxy extends Thread {
      *    @param playgroundInterface Playground Interface
      */
     public PlaygroundClientProxy(ServerCom sconi, PlaygroundInterface playgroundInterface) {
-        super("PlaygroundProxy_" + getProxyId());
+        super("PlaygroundClientProxy_" + getProxyId());
         this.sconi = sconi;
         this.playgroundInterface = playgroundInterface;
     }

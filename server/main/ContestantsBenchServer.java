@@ -1,10 +1,10 @@
 package server.main;
 
-import client.stubs.generalrepository.GeneralReposStub;
+import client.stubs.generalrepository.GeneralRepositoryStub;
 import communication.ServerCom;
 import server.sharedregions.ContestantsBench;
 import server.sharedregions.ContestantsBenchInterface;
-import server.entities.ContestantsBenchProxy;
+import server.entities.ContestantsBenchClientProxy;
 import configuration.Config;
 
 import java.net.SocketTimeoutException;
@@ -33,7 +33,7 @@ public class ContestantsBenchServer {
     public static void main(String[] args) {
         ContestantsBench cBench;                    // contestants bench (service to be rendered)
         ContestantsBenchInterface cBenchInter;      // interface to the contestants bench
-        GeneralReposStub reposStub;                 // stub to the general repository
+        GeneralRepositoryStub reposStub;                 // stub to the general repository
         ServerCom scon, sconi;                      // communication channels
         int portNumb = -1;                          // port number for listening to service requests
         String reposServerName;                     // name of the platform where is located the server for the general repository
@@ -67,7 +67,7 @@ public class ContestantsBenchServer {
 
         /* service is established */
 
-        reposStub = new GeneralReposStub(reposServerName, reposPortNumb);  // stub to the general repository
+        reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb);  // stub to the general repository
         cBench = new ContestantsBench(Config.N_CONTESTANTS_PER_TEAM, Config.MAX_STRENGTH, reposStub); // contestants bench
         cBenchInter = new ContestantsBenchInterface(cBench);               // interface to the contestants bench
         scon = new ServerCom(portNumb);                                    // communication channel
@@ -77,13 +77,13 @@ public class ContestantsBenchServer {
 
         /* service requests processing */
 
-        ContestantsBenchProxy cBenchProxy;
+        ContestantsBenchClientProxy cBenchProxy;
 
         waitConnection = true;
         while (waitConnection) {
             try {
                 sconi = scon.accept();                                          // accept connection
-                cBenchProxy = new ContestantsBenchProxy(sconi, cBenchInter);    // service provider agent
+                cBenchProxy = new ContestantsBenchClientProxy(sconi, cBenchInter);    // service provider agent
                 cBenchProxy.start();
             } catch (SocketTimeoutException e) {
             }

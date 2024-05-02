@@ -29,7 +29,7 @@ public class GeneralRepositoryClientProxy extends Thread {
      *    @param generalRepositoryInterface General Repository Interface
      */
     public GeneralRepositoryClientProxy(ServerCom sconi, GeneralRepositoryInterface generalRepositoryInterface) {
-        super("GeneralReposProxy_" + getProxyId());
+        super("GeneralRepositoryClientProxy_" + getProxyId());
         this.sconi = sconi;
         this.generalRepositoryInterface = generalRepositoryInterface;
     }

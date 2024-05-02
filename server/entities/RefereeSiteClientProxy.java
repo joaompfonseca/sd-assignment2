@@ -28,7 +28,7 @@ public class RefereeSiteClientProxy extends Thread {
      *    @param refereeSiteInterface Referee Site Interface
      */
     public RefereeSiteClientProxy(ServerCom sconi, RefereeSiteInterface refereeSiteInterface) {
-        super("RefereeSiteProxy_" + getProxyId());
+        super("RefereeSiteClientProxy_" + getProxyId());
         this.sconi = sconi;
         this.refereeSiteInterface = refereeSiteInterface;
     }

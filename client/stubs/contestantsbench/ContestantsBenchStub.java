@@ -62,6 +62,7 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.SHUTDOWN_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.SHUTDOWN_REPLY);
             System.exit(1);
         }
 
@@ -101,11 +102,13 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.COACH_GET_TEAM_STRENGTHS_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.COACH_GET_TEAM_STRENGTHS_REPLY);
             System.exit(1);
         }
         if (inMessage.getStrengths() == null || inMessage.getStrengths().length != Config.N_CONTESTANTS_PER_TEAM) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid team strengths!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + Config.N_CONTESTANTS_PER_TEAM + " strengths");
             System.exit(1);
         }
 
@@ -146,6 +149,7 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.COACH_SET_TEAM_IS_MATCH_END_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.COACH_SET_TEAM_IS_MATCH_END_REPLY);
             System.exit(1);
         }
 
@@ -188,11 +192,13 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.CONTESTANT_SEAT_DOWN_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.CONTESTANT_SEAT_DOWN_REPLY);
             System.exit(1);
         }
         if (inMessage.getStrength() < 1 || inMessage.getStrength() > Config.MAX_STRENGTH) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid contestant strength!");
             System.err.println(inMessage);
+            System.err.println("Expected: 1 <= strength <= " + Config.MAX_STRENGTH);
             System.exit(1);
         }
 
@@ -234,6 +240,7 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.COACH_CALL_CONTESTANTS_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.COACH_CALL_CONTESTANTS_REPLY);
             System.exit(1);
         }
 
@@ -272,6 +279,7 @@ public class ContestantsBenchStub implements IContestantsBenchStub {
         if (inMessage.getType() != MessageType.CONTESTANT_FOLLOW_COACH_ADVICE_REPLY) {
             System.err.println("Thread " + Thread.currentThread().getName() + ": Invalid message type!");
             System.err.println(inMessage);
+            System.err.println("Expected: " + MessageType.CONTESTANT_FOLLOW_COACH_ADVICE_REPLY);
             System.exit(1);
         }
 

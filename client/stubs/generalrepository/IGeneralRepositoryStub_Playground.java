@@ -7,7 +7,7 @@ package client.stubs.generalrepository;
  * @author João Fonseca (103154)
  * @version 1.0
  */
-public interface IGeneralReposStub_Playground {
+public interface IGeneralRepositoryStub_Playground {
     /**
      * Set the new state of the contestant when he is getting ready.
      *
