@@ -112,7 +112,7 @@ public class ContestantsBenchInterface {
                 break;
             }
             case MessageType.SHUTDOWN_REQUEST: {
-                // contestantsBench.shutdown(); // TODO: FIX SHUTDOWN
+                contestantsBench.shutdown();
                 outMessage = new MessageShutdownReply();
                 break;
             }

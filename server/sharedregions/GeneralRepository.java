@@ -108,6 +108,11 @@ public class GeneralRepository {
     private final PrintWriter fileWriter;
 
     /**
+     *   Number of entity groups requesting the shutdown.
+     */
+    private int nEntities;
+
+    /**
      * Instantiation of the general repository.
      *
      * @param nContestants the number of contestants
@@ -134,6 +139,8 @@ public class GeneralRepository {
         this.ropePosition = null;
         this.nTrials = 0;
         this.nGames = 0;
+
+        nEntities = 0;
 
         this.lock = new ReentrantLock();
 
@@ -478,7 +485,10 @@ public class GeneralRepository {
     public void shutdown() {
         lock.lock();
         try {
-            GeneralRepositoryServer.waitConnection = false;
+            nEntities += 1;
+            if (nEntities >= 3) {
+                GeneralRepositoryServer.waitConnection = false;
+            }
         } finally {
             lock.unlock();
         }

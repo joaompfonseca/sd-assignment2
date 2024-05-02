@@ -120,7 +120,7 @@ public class PlaygroundInterface {
                 break;
             }
             case MessageType.SHUTDOWN_REQUEST: {
-                // playground.shutdown(); // TODO: FIX SHUTDOWN
+                playground.shutdown();
                 outMessage = new MessageShutdownReply();
                 break;
             }

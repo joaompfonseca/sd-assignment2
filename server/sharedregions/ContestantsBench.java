@@ -76,6 +76,11 @@ public class ContestantsBench {
     private final GeneralRepositoryStub reposStub;
 
     /**
+     *   Number of entity groups requesting the shutdown.
+     */
+    private int nEntities;
+
+    /**
      * Instantiation of the contestants bench.
      *
      * @param contestantsPerTeam the number of contestants per team
@@ -89,6 +94,7 @@ public class ContestantsBench {
         teamData[0] = new TeamData(lock);
         teamData[1] = new TeamData(lock);
         this.reposStub = reposStub;
+        nEntities = 0;
     }
 
     /**
@@ -214,8 +220,11 @@ public class ContestantsBench {
     public void shutdown() {
         lock.lock();
         try {
-            reposStub.shutdown();
-            ContestantsBenchServer.waitConnection = false;
+            nEntities += 1;
+            if (nEntities >= 3) {
+                reposStub.shutdown();
+                ContestantsBenchServer.waitConnection = false;
+            }
         } finally {
             lock.unlock();
         }

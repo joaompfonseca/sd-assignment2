@@ -86,6 +86,10 @@ public class Playground {
      * The general repository stub.
      */
     private final GeneralRepositoryStub reposStub;
+    /**
+     *   Number of entity groups requesting the shutdown.
+     */
+    private int nEntities;
 
     /**
      * Instantiation of the playground monitor.
@@ -108,6 +112,7 @@ public class Playground {
         trialDecided = lock.newCondition();
         isTrialDecided = false;
         this.reposStub = reposStub;
+        nEntities = 0;
     }
 
     /**
@@ -279,9 +284,11 @@ public class Playground {
     public void shutdown() {
         lock.lock();
         try {
-            trialDecided.signalAll();
-            reposStub.shutdown();
-            PlaygroundServer.waitConnection = false;
+            nEntities += 1;
+            if (nEntities < 3) {
+                reposStub.shutdown();
+                PlaygroundServer.waitConnection = false;
+            }
         } finally {
             lock.unlock();
         }

@@ -46,6 +46,10 @@ public class RefereeSite {
      * The general repository.
      */
     private final GeneralRepositoryStub reposStub;
+    /**
+     *   Number of entity groups requesting the shutdown.
+     */
+    private int nEntities;
 
     /**
      * Instantiation of the referee site.
@@ -62,6 +66,7 @@ public class RefereeSite {
         isMatchEnd = false;
         winTeamGame = -1;
         winTeamMatch = -1;
+        nEntities = 0;
     }
 
     /**
@@ -173,8 +178,11 @@ public class RefereeSite {
     public void shutdown() {
         lock.lock();
         try {
-            reposStub.shutdown();
-            RefereeSiteServer.waitConnection = false;
+            nEntities += 1;
+            if (nEntities >= 3) {
+                reposStub.shutdown();
+                RefereeSiteServer.waitConnection = false;
+            }
         } finally {
             lock.unlock();
         }

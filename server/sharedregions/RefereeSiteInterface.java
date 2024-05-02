@@ -97,7 +97,7 @@ public class RefereeSiteInterface {
                 break;
             }
             case MessageType.SHUTDOWN_REQUEST: {
-                // refereeSite.shutdown(); // TODO: FIX SHUTDOWN
+                refereeSite.shutdown();
                 outMessage = new MessageShutdownReply();
                 break;
             }
