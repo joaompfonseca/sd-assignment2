@@ -147,7 +147,7 @@ public class GeneralRepository {
         // Timestamp
         Instant now = Instant.now();
         String timestamp = now.toString();
-        timestamp = timestamp.split("\\.")[0];
+        timestamp = timestamp.split("\\.")[0].replaceAll(":", "-");
         String filename = logsFolder + "/log_" + timestamp + ".log";
 
         // Check if folder logs exists if not create it
