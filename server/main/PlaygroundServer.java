@@ -87,7 +87,7 @@ public class PlaygroundServer {
             }
         }
         scon.end();
-        System.out.println("Server service has ended!");
+        System.out.println("Playground service has ended!");
     }
 
     /**

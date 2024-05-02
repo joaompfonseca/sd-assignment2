@@ -67,7 +67,7 @@ public class GeneralRepositoryServer {
             }
         }
         scon.end();                                                         // operations termination
-        System.out.println("Server was shutdown.");
+        System.out.println("General Repository service has ended!");
     }
 
     /**
