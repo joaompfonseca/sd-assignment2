@@ -5,12 +5,12 @@ import communication.ClientCom;
 import communication.message.*;
 
 /**
- *  Stub to the general repository.
+ * Stub to the general repository.
  *
  * @author Diogo Paiva (103183)
  * @author João Fonseca (103154)
  * @version 1.0
-*/
+ */
 public class GeneralRepositoryStub implements IGeneralRepositoryStub {
     /**
      * Server hostname.
@@ -21,23 +21,16 @@ public class GeneralRepositoryStub implements IGeneralRepositoryStub {
      */
     private final int port;
 
-  /**
-   *   Instantiation of a stub to the general repository.
-   *
-   * @param host hostname of the server
-   * @param port port of the server
-   */
-  public GeneralRepositoryStub(String host, int port) {
-      this.host = host;
-      this.port = port;
-  }
-
-  /**
-   *   Operation initialization of the simulation.
-   *
-   *     @param fileName logging file name
-   *     @param nIter number of iterations of the customer life cycle
-   */
+    /**
+     * Instantiation of a stub to the general repository.
+     *
+     * @param host hostname of the server
+     * @param port port of the server
+     */
+    public GeneralRepositoryStub(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
 
     /**
      * Shutdown the server.
