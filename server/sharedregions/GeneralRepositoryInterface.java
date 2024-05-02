@@ -202,7 +202,7 @@ public class GeneralRepositoryInterface {
                 outMessage = new MessageRefereeDeclareMatchWinnerReply();
                 break;
             }
-            case MessageType.SHUTDOWN_REPLY: {
+            case MessageType.SHUTDOWN_REQUEST: {
                 generalRepository.shutdown();
                 outMessage = new MessageShutdownReply();
                 break;
