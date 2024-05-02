@@ -67,11 +67,11 @@ public class PlaygroundServer {
 
         /* service is established */
 
-        scon = new ServerCom(portNumb);
-        scon.start();
         reposStub = new GeneralRepositoryStub(reposServerName, reposPortNumb);
         playground = new Playground(Config.N_CONTESTANTS_PER_TRIAL, reposStub);
         playgroundInter = new PlaygroundInterface(playground);
+        scon = new ServerCom(portNumb);
+        scon.start();
         System.out.println("Playground service has started!");
         System.out.println("Server listening on port " + portNumb);
 
