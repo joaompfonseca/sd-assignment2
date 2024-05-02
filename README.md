@@ -56,6 +56,10 @@ To allow synchronization between the threads, that are running in each process, 
 
 Logs of the runs are saved in the `logs` directory where the General Repository server is running. The logs are named according to `<timestamp>.log`.
 
+## Documentation
+
+JavaDoc documentation can be found in the `docs` directory. Open `index.html` in a browser to access it.
+
 ## Authors
 
 - Diogo Paiva, 103183

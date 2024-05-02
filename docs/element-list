@@ -1,0 +1,12 @@
+client.entities
+client.main
+client.stubs.contestantsbench
+client.stubs.generalrepository
+client.stubs.playground
+client.stubs.refereesite
+communication
+communication.message
+configuration
+server.entities
+server.main
+server.sharedregions
