@@ -90,4 +90,10 @@ public class RefereeSiteServer {
         scon.end();
         System.out.println("Referee Site service has ended!");
     }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private RefereeSiteServer() {
+    }
 }

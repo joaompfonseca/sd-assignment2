@@ -25,6 +25,7 @@ public class GeneralRepositoryInterface {
      * Process and reply a message.
      *
      * @param inMessage the message to process
+     * @throws MessageException if the message is invalid
      * @return the reply
      */
     public Message processAndReply(Message inMessage) throws MessageException {

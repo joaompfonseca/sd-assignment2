@@ -5,6 +5,13 @@ import communication.message.Message;
 import communication.message.MessageException;
 import server.sharedregions.PlaygroundInterface;
 
+/**
+ * Service provider agent for access to the Playground.
+ *
+ * @author Diogo Paiva (103183)
+ * @author João Fonseca (103154)
+ * @version 1.0
+ */
 public class PlaygroundClientProxy extends Thread {
 
     /**

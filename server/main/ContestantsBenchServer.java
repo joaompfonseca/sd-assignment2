@@ -17,6 +17,7 @@ import java.net.SocketTimeoutException;
  * @version 1.0
  */
 public class ContestantsBenchServer {
+
     /**
      * Flag signaling the service is active.
      */
@@ -90,5 +91,11 @@ public class ContestantsBenchServer {
         }
         scon.end();
         System.out.println("Contestants Bench service has ended!");
+    }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private ContestantsBenchServer() {
     }
 }

@@ -89,4 +89,10 @@ public class PlaygroundServer {
         scon.end();
         System.out.println("Server service has ended!");
     }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private PlaygroundServer() {
+    }
 }

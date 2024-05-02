@@ -16,6 +16,8 @@ public class MessageReposAssertTrialDecisionRequest extends Message {
 
     /**
      * Instantiation of the referee assert trial decision message (request).
+     *
+     * @param ropePosition the rope position
      */
     public MessageReposAssertTrialDecisionRequest(int ropePosition) {
         super(MessageType.REPOS_ASSERT_TRIAL_DECISION_REQUEST);

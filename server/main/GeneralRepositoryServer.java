@@ -69,4 +69,10 @@ public class GeneralRepositoryServer {
         scon.end();                                                         // operations termination
         System.out.println("Server was shutdown.");
     }
+
+    /**
+     * Private constructor to hide the implicit public one.
+     */
+    private GeneralRepositoryServer() {
+    }
 }
