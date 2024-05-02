@@ -6,7 +6,7 @@ NODE="sd$LAB$GROUP@l040101-ws$MACHINE_CONTESTANTS_BENCH.ua.pt"
 echo "- Contestants Bench will be deployed on $NODE"
 
 echo "-- Transferring data to the Contestants Bench node"
-sshpass -f password ssh "$NODE" "rm -rf ~/dist"
+sshpass -f password ssh "$NODE" "rm -rf ~/dist/ContestantsBench"
 sshpass -f password scp -r dist/ContestantsBench.zip "$NODE":~
 
 echo "-- Decompressing data sent to the Contestants Bench node"

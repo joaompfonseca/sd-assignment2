@@ -6,7 +6,7 @@ NODE="sd$LAB$GROUP@l040101-ws$MACHINE_REFEREE.ua.pt"
 echo "- Referee will be deployed on $NODE"
 
 echo "-- Transferring data to the Referee node"
-sshpass -f password ssh "$NODE" "rm -rf ~/dist"
+sshpass -f password ssh "$NODE" "rm -rf ~/dist/Referee"
 sshpass -f password scp -r dist/Referee.zip "$NODE":~
 
 echo "-- Decompressing data sent to the Referee node"

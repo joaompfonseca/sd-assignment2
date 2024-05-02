@@ -6,7 +6,7 @@ NODE="sd$LAB$GROUP@l040101-ws$MACHINE_PLAYGROUND.ua.pt"
 echo "- Playground will be deployed on $NODE"
 
 echo "-- Transferring data to the Playground node"
-sshpass -f password ssh "$NODE" "rm -rf ~/dist"
+sshpass -f password ssh "$NODE" "rm -rf ~/dist/Playground"
 sshpass -f password scp -r dist/Playground.zip "$NODE":~
 
 echo "-- Decompressing data sent to the Playground node"
