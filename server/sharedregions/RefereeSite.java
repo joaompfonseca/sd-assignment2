@@ -179,7 +179,7 @@ public class RefereeSite {
         lock.lock();
         try {
             nEntities += 1;
-            if (nEntities >= 3) {
+            if (nEntities >= 2) {
                 reposStub.shutdown();
                 RefereeSiteServer.waitConnection = false;
             }

@@ -221,7 +221,7 @@ public class ContestantsBench {
         lock.lock();
         try {
             nEntities += 1;
-            if (nEntities >= 3) {
+            if (nEntities >= 2) {
                 reposStub.shutdown();
                 ContestantsBenchServer.waitConnection = false;
             }

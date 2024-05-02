@@ -285,7 +285,7 @@ public class Playground {
         lock.lock();
         try {
             nEntities += 1;
-            if (nEntities < 3) {
+            if (nEntities >= 3) {
                 reposStub.shutdown();
                 PlaygroundServer.waitConnection = false;
             }
