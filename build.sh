@@ -27,6 +27,8 @@ cp bin/client/stubs/refereesite/*.class \
    dist/Coach/client/stubs/refereesite
 cp bin/communication/message/Message.class \
    bin/communication/message/MessageCoach*.class \
+   bin/communication/message/MessageShutdown*.class \
+   bin/communication/message/MessageType.class \
    dist/Coach/communication/message
 cp bin/communication/ClientCom.class \
    dist/Coach/communication
@@ -50,6 +52,8 @@ cp bin/client/stubs/playground/*.class \
    dist/Contestant/client/stubs/playground
 cp bin/communication/message/Message.class \
    bin/communication/message/MessageContestant*.class \
+   bin/communication/message/MessageShutdown*.class \
+   bin/communication/message/MessageType.class \
    dist/Contestant/communication/message
 cp bin/communication/ClientCom.class \
    dist/Contestant/communication
@@ -73,6 +77,8 @@ cp bin/client/stubs/refereesite/*.class \
    dist/Referee/client/stubs/refereesite
 cp bin/communication/message/Message.class \
    bin/communication/message/MessageReferee*.class \
+   bin/communication/message/MessageShutdown*.class \
+   bin/communication/message/MessageType.class \
    dist/Referee/communication/message
 cp bin/communication/ClientCom.class \
    dist/Referee/communication

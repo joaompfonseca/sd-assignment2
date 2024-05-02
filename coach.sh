@@ -1,15 +1,6 @@
 #!/bin/bash
 source load_env.sh
 
-if [ -z "$LAB" ]; then
-    echo "LAB is not set (check .env file)"
-    exit 1
-fi
-if [ -z "$GROUP" ]; then
-    echo "GROUP is not set (check .env file)"
-    exit 1
-fi
-
 NODE="sd$LAB$GROUP@l040101-ws$MACHINE_COACH.ua.pt"
 
 echo "- Coach will be deployed on $NODE"
@@ -25,7 +16,6 @@ echo "-- Executing the Coach program"
 sshpass -f password ssh "$NODE" \
   "cd ~/dist/Coach ;
   java client.main.CoachClient \
-  l040101-ws$MACHINE_CONTESTANT_BENCH.ua.pt $PORT_CONTESTANT_BENCH \
+  l040101-ws$MACHINE_CONTESTANTS_BENCH.ua.pt $PORT_CONTESTANTS_BENCH \
   l040101-ws$MACHINE_PLAYGROUND.ua.pt $PORT_PLAYGROUND \
   l040101-ws$MACHINE_REFEREE_SITE.ua.pt $PORT_REFEREE_SITE"
-
