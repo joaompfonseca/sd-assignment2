@@ -4,7 +4,7 @@
 
 The assignment goal was to develop a client / server implementation of the "Game of the Rope", as described in the [description of the assignment](description.pdf) provided by the course's professor. The solution was implemented in Java 21 and is built on top of the previous assignment (that uses reentrant locks to ensure mutual exclusion and condition variables to ensure synchronization between threads). Each envolved entity is now encapsulated in a process running on seperate machines, that communicate by exchanging messages with the use of TCP sockets.
 
-The game is played by two teams, each with 5 players and 1 coach. A referee is responsible for the flow of the game. There is a [general interaction diagram](general-interaction-diagram.pdf) to help understand the game's flow, and a [client interaction diagram](client-interaction-digram.pdf) and a [server interaction diagram](server-interaction-diagram) to help understand how the client and server logic are implemented.
+The game is played by two teams, each with 5 players and 1 coach. A referee is responsible for the flow of the game. There is a [general interaction diagram](general-interaction-diagram.pdf) to help understand the game's flow, and a [client architecture](client-architecture.pdf) and a [server architecture](server-architecture.pdf) to help understand how the client and server logic are implemented.
 
 The following entities were defined:
 
